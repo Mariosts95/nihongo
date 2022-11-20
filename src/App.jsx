@@ -1,5 +1,7 @@
-function App() {
-  return <h1>Hello World</h1>;
-}
+import { Typography } from '@mui/material';
+
+const App = () => {
+  return <Typography variant='h1'>Hello World</Typography>;
+};
 
 export default App;
