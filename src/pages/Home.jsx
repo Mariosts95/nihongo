@@ -2,8 +2,6 @@
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 
-// Data
-
 const Home = () => {
   return (
     <Paper elevation={3} sx={{ p: 2, height: '50vh' }}>

@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import HiraganaProvider from './store/hiraganaProvider';
 
 import HeaderMenu from './components/HeaderMenu';
+import Loader from './components/Loader';
 
 const Home = lazy(() => import('./pages/Home'));
 const Learn = lazy(() => import('./pages/Learn'));
@@ -17,7 +18,7 @@ const App = () => {
         <Route
           path='/'
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
               <Home />
             </Suspense>
           }
@@ -25,7 +26,7 @@ const App = () => {
         <Route
           path='/learn'
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
               <Learn />
             </Suspense>
           }
@@ -33,7 +34,7 @@ const App = () => {
         <Route
           path='/random-kana'
           element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
               <RandomKana />
             </Suspense>
           }
