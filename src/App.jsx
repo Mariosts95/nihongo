@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import HiraganaProvider from './store/hiraganaProvider';
+import HiraganaProvider from './store/HiraganaProvider';
 
 import HeaderMenu from './components/HeaderMenu';
 import Loader from './components/Loader';
