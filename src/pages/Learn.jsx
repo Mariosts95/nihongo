@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import HiraganaOptions from '../components/HiraganaOptions';
 
 // Data
-import { UseHiragana } from '../store/hiraganaProvider';
+import { UseHiragana } from '../store/HiraganaProvider';
 
 const Learn = () => {
   const { hiragana } = UseHiragana();
