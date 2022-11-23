@@ -90,7 +90,7 @@ const HeaderMenu = () => {
             {pages.map((page) => (
               <NavLink key={page.name} to={page.path} style={{ textDecoration: 'none' }}>
                 {({ isActive }) => (
-                  <Button sx={{ my: 2, color: isActive ? 'red' : 'white', display: 'block' }}>{page.name}</Button>
+                  <Button sx={{ my: 2, color: isActive ? '#BC002D' : 'white', display: 'block' }}>{page.name}</Button>
                 )}
               </NavLink>
             ))}
