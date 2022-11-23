@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import FilterListIcon from '@mui/icons-material/FilterList';
 
-import { UseHiragana } from '../store/hiraganaProvider';
+import { UseHiragana } from '../store/HiraganaProvider';
 
 const HiraganaOptions = () => {
   const [openFilter, setOpenFilter] = useState(false);

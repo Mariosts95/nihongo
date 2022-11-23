@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 // Data
-import { UseHiragana } from '../store/hiraganaProvider';
+import { UseHiragana } from '../store/HiraganaProvider';
 
 const RandomKana = () => {
   const [randomKana, setRandomKana] = useState(null);

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-import { UseHiragana } from '../store/hiraganaProvider';
+import { UseHiragana } from '../store/HiraganaProvider';
 
 const FlipSingleKanaCard = ({ kana, romaji }) => {
   const { hiraganaDisplayJap } = UseHiragana();

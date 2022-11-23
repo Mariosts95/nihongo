@@ -4,7 +4,7 @@ import Switch from '@mui/material/Switch';
 import Box from '@mui/material/Box';
 
 // Data
-import { UseHiragana } from '../store/hiraganaProvider';
+import { UseHiragana } from '../store/HiraganaProvider';
 
 const HiraganaLanguageSwitch = () => {
   const { hiraganaDisplayJap, updateHiraganaDisplayJap } = UseHiragana();
