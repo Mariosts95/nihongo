@@ -1,7 +1,7 @@
 // MUI
-import Typography from '@mui/material/Typography';
-import Switch from '@mui/material/Switch';
 import Box from '@mui/material/Box';
+import Switch from '@mui/material/Switch';
+import Typography from '@mui/material/Typography';
 
 // Data
 import { UseHiragana } from '../store/HiraganaProvider';

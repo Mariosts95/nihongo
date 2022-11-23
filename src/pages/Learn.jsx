@@ -1,14 +1,11 @@
-import KanaCard from '../components/SingleKanaCard';
-
-// MUI
-import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+
+import { UseHiragana } from '../store/HiraganaProvider';
 
 import HiraganaOptions from '../components/HiraganaOptions';
-
-// Data
-import { UseHiragana } from '../store/HiraganaProvider';
+import KanaCard from '../components/SingleKanaCard';
 
 const Learn = () => {
   const { hiragana } = UseHiragana();
