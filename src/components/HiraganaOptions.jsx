@@ -1,13 +1,12 @@
 import { useState } from 'react';
 
-// MUI
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
 import Grid from '@mui/material/Grid';
-import FilterListIcon from '@mui/icons-material/FilterList';
 
 import { UseHiragana } from '../store/HiraganaProvider';
 
@@ -38,10 +37,22 @@ const HiraganaOptions = () => {
 
       <Drawer anchor='bottom' open={openFilter} onClose={closeFilterDrawer}>
         <FormGroup sx={{ p: 2 }}>
-          <Grid spacing={1} container flexDirection='column' justifyContent='center' alignItems='center'>
+          <Grid
+            spacing={1}
+            container
+            flexDirection='column'
+            justifyContent='center'
+            alignItems='center'
+          >
             <Grid item>
               <FormControlLabel
-                control={<Checkbox name='gojuuon' onChange={updateHiraganaOptions} checked={hiraganaOptions.gojuuon} />}
+                control={
+                  <Checkbox
+                    name='gojuuon'
+                    onChange={updateHiraganaOptions}
+                    checked={hiraganaOptions.gojuuon}
+                  />
+                }
                 label='Kana'
                 labelPlacement='top'
               />
@@ -49,7 +60,13 @@ const HiraganaOptions = () => {
 
             <Grid item>
               <FormControlLabel
-                control={<Checkbox name='dakuon' onChange={updateHiraganaOptions} checked={hiraganaOptions.dakuon} />}
+                control={
+                  <Checkbox
+                    name='dakuon'
+                    onChange={updateHiraganaOptions}
+                    checked={hiraganaOptions.dakuon}
+                  />
+                }
                 label='Dakuten Kana (tenten)'
                 labelPlacement='top'
               />
@@ -57,7 +74,11 @@ const HiraganaOptions = () => {
             <Grid item>
               <FormControlLabel
                 control={
-                  <Checkbox name='handakuon' onChange={updateHiraganaOptions} checked={hiraganaOptions.handakuon} />
+                  <Checkbox
+                    name='handakuon'
+                    onChange={updateHiraganaOptions}
+                    checked={hiraganaOptions.handakuon}
+                  />
                 }
                 label='Handakuon Kana (maru)'
                 labelPlacement='top'
@@ -65,7 +86,13 @@ const HiraganaOptions = () => {
             </Grid>
             <Grid item>
               <FormControlLabel
-                control={<Checkbox name='youon' onChange={updateHiraganaOptions} checked={hiraganaOptions.youon} />}
+                control={
+                  <Checkbox
+                    name='youon'
+                    onChange={updateHiraganaOptions}
+                    checked={hiraganaOptions.youon}
+                  />
+                }
                 label='Combinations Kana'
                 labelPlacement='top'
               />

@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import FlipSingleKanaCard from '../components/FlipSingleKanaCard';
-import HiraganaLanguageSwitch from '../components/HiraganaLanguageSwitch';
+import { useEffect, useState } from 'react';
 
-import HiraganaOptions from '../components/HiraganaOptions';
-// MUI
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
 // Data
 import { UseHiragana } from '../store/HiraganaProvider';
+
+import FlipSingleKanaCard from '../components/FlipSingleKanaCard';
+import HiraganaLanguageSwitch from '../components/HiraganaLanguageSwitch';
+import HiraganaOptions from '../components/HiraganaOptions';
 
 const RandomKana = () => {
   const [randomKana, setRandomKana] = useState(null);
@@ -39,7 +39,11 @@ const RandomKana = () => {
       <HiraganaLanguageSwitch />
 
       {hiragana.length ? (
-        <Button onClick={getRandomKana} variant='contained' sx={{ my: 2, mx: 'auto', display: 'block' }}>
+        <Button
+          onClick={getRandomKana}
+          variant='contained'
+          sx={{ my: 2, mx: 'auto', display: 'block' }}
+        >
           Get Random Kana
         </Button>
       ) : (

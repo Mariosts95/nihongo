@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 import HiraganaProvider from './store/HiraganaProvider';
 

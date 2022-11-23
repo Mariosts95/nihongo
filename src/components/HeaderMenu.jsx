@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
+import Toolbar from '@mui/material/Toolbar';
 
 const pages = [
   { name: 'Home', path: '/' },
@@ -31,7 +31,11 @@ const HeaderMenu = () => {
     <AppBar position='static'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <Button size='small' aria-label='menu' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+          <Button
+            size='small'
+            aria-label='menu'
+            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+          >
             <NavLink to='/'>
               <img src='favicon/favicon-32x32.png' alt='japanese flag' />
             </NavLink>
@@ -90,7 +94,9 @@ const HeaderMenu = () => {
             {pages.map((page) => (
               <NavLink key={page.name} to={page.path} style={{ textDecoration: 'none' }}>
                 {({ isActive }) => (
-                  <Button sx={{ my: 2, color: isActive ? '#BC002D' : 'white', display: 'block' }}>{page.name}</Button>
+                  <Button sx={{ my: 2, color: isActive ? '#BC002D' : 'white', display: 'block' }}>
+                    {page.name}
+                  </Button>
                 )}
               </NavLink>
             ))}
