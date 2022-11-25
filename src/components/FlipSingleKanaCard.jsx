@@ -21,10 +21,10 @@ const FlipSingleKanaCard = ({ kana, romaji }) => {
   };
 
   return (
-    <Box sx={{ maxWidth: 200, mx: 'auto', my: 2, p: 3 }}>
+    <Box sx={{ maxWidth: 350, width: 'fit-content', mx: 'auto', my: 2, p: 3 }}>
       <Card>
         <CardContent sx={{ textAlign: 'center' }}>
-          <Typography variant='h2' component='p' color='text.secondary' gutterBottom>
+          <Typography variant='h1' gutterBottom>
             {displaySide ? kana : romaji}
           </Typography>
           <Button onClick={flipCard} variant='outlined' size='small'>
