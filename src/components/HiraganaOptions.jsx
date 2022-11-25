@@ -3,24 +3,24 @@ import { useState } from 'react';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
-import Drawer from '@mui/material/Drawer';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import Grid from '@mui/material/Grid';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 import { UseHiragana } from '../store/HiraganaProvider';
 
 const HiraganaOptions = () => {
-  const [openFilter, setOpenFilter] = useState(false);
+  const [openFilters, setOpenFilters] = useState(false);
 
-  const { hiragana, hiraganaOptions, updateHiraganaOptions } = UseHiragana();
+  const { hiraganaOptions, updateHiraganaOptions } = UseHiragana();
 
-  const openFilterDrawer = () => {
-    setOpenFilter(true);
+  const handleOpenFilters = () => {
+    setOpenFilters(true);
   };
 
-  const closeFilterDrawer = () => {
-    setOpenFilter(false);
+  const HandleCloseFilters = () => {
+    setOpenFilters(false);
   };
 
   return (
@@ -28,14 +28,20 @@ const HiraganaOptions = () => {
       <Button
         variant='outlined'
         startIcon={<FilterListIcon />}
-        onClick={openFilterDrawer}
+        onClick={handleOpenFilters}
         fullWidth
+        size='large'
         sx={{ mx: 'auto', my: 2 }}
       >
         Open Filters
       </Button>
 
-      <Drawer anchor='bottom' open={openFilter} onClose={closeFilterDrawer}>
+      <SwipeableDrawer
+        anchor='bottom'
+        open={openFilters}
+        onClose={HandleCloseFilters}
+        onOpen={handleOpenFilters}
+      >
         <FormGroup sx={{ p: 2 }}>
           <Grid
             spacing={1}
@@ -53,7 +59,7 @@ const HiraganaOptions = () => {
                     checked={hiraganaOptions.gojuuon}
                   />
                 }
-                label='Kana'
+                label='Main Kana'
                 labelPlacement='top'
               />
             </Grid>
@@ -93,13 +99,13 @@ const HiraganaOptions = () => {
                     checked={hiraganaOptions.youon}
                   />
                 }
-                label='Combinations Kana'
+                label='Combination Kana'
                 labelPlacement='top'
               />
             </Grid>
           </Grid>
         </FormGroup>
-      </Drawer>
+      </SwipeableDrawer>
     </>
   );
 };

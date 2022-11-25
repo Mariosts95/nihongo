@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
-import { DotLoader } from 'react-spinners';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Loader = () => (
-  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-    <DotLoader color='#bc002d' size={100} />
+  <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+    <CircularProgress size={100} thickness={2} />
   </Box>
 );
 
