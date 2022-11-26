@@ -18,20 +18,25 @@ const QuoteCard = () => {
     );
   }
 
-  // if (error) {
-  return (
-    <Card sx={{ maxWidth: 220, mx: 'auto', my: 3 }}>
-      <CardMedia component='img' height='220' image='/images/tobi-funny.gif' alt='akatsuki-tobi' />
-      <CardContent>
-        <Typography variant='body1' color='text.primary' textAlign='center'>
-          Oops something went wrong!
-        </Typography>
-      </CardContent>
-    </Card>
-  );
-  // }
+  if (error) {
+    return (
+      <Card sx={{ maxWidth: 220, mx: 'auto', my: 3 }}>
+        <CardMedia
+          component='img'
+          height='220'
+          image='/images/tobi-funny.gif'
+          alt='akatsuki-tobi'
+        />
+        <CardContent>
+          <Typography variant='body1' color='text.primary' textAlign='center'>
+            Oops something went wrong!
+          </Typography>
+        </CardContent>
+      </Card>
+    );
+  }
 
-  /*   return (
+  return (
     <Card sx={{ maxWidth: 350, mx: 'auto', my: 3 }}>
       <CardContent>
         <Typography variant='h3' color='text.primary' gutterBottom>
@@ -45,7 +50,7 @@ const QuoteCard = () => {
         </Typography>
       </CardContent>
     </Card>
-  ); */
+  );
 };
 
 export default QuoteCard;
