@@ -9,8 +9,8 @@ const Home = () => {
       elevation={3}
       sx={{
         p: 2,
-        minHeight: '100%',
-        height: { xs: 'calc(100vh - 56px)', md: 'calc(100vh - 68px)' },
+        minHeight: { xs: 'calc(100vh - 56px)', md: 'calc(100vh - 68px)' },
+        height: '100%',
       }}
     >
       <Typography variant='h4' textAlign='center' gutterBottom>
