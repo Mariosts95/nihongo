@@ -1,22 +1,44 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Button } from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
 import Grid from '@mui/material/Grid';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Typography from '@mui/material/Typography';
 
 import { UseHiragana } from '@/store/HiraganaProvider';
+import {
+  getRandomHiragana,
+  resetHiragana,
+  updateHiragana,
+  updateHiraganaOptions,
+} from '@/store/slices/hiraganaSlice';
 
 import TestCard from '@/components/Cards/TestCard';
-import HiraganaOptions from '@/components/UI/HiraganaOptions';
 import Loader from '@/components/UI/Loader';
 import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
 const HiraganaTest = () => {
+  const hiragana = useSelector((state) => state.hiragana.hiragana);
+  const hiraganaOptions = useSelector((state) => state.hiragana.hiraganaOptions);
+
   const [testMode, setTestMode] = useState(false);
+  const [openFilters, setOpenFilters] = useState(false);
 
-  const { hiragana, resetHiragana } = UseHiragana();
+  const handleOpenFilters = () => {
+    setOpenFilters(true);
+  };
 
+  const HandleCloseFilters = () => {
+    setOpenFilters(false);
+  };
+
+  const dispatch = useDispatch();
   if (!hiragana) {
     return <Loader />;
   }
@@ -27,7 +49,7 @@ const HiraganaTest = () => {
 
   const handleStopTestMode = () => {
     setTestMode(false);
-    resetHiragana();
+    dispatch(resetHiragana());
   };
 
   return (
@@ -43,7 +65,119 @@ const HiraganaTest = () => {
         </Typography>
       ) : null}
 
-      {!testMode && <HiraganaOptions />}
+      {!testMode && (
+        <>
+          <Button
+            variant='outlined'
+            startIcon={<FilterListIcon />}
+            onClick={handleOpenFilters}
+            fullWidth
+            size='large'
+            sx={{ mx: 'auto', my: 2 }}
+          >
+            Open Filters
+          </Button>
+
+          <SwipeableDrawer
+            anchor='bottom'
+            open={openFilters}
+            onClose={HandleCloseFilters}
+            onOpen={handleOpenFilters}
+          >
+            <FormGroup sx={{ p: 2 }}>
+              <Grid
+                spacing={1}
+                container
+                flexDirection='column'
+                justifyContent='center'
+                alignItems='center'
+              >
+                <Grid item>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name='gojuuon'
+                        onChange={(e) => {
+                          dispatch(
+                            updateHiraganaOptions({
+                              optionName: e.target.name,
+                              optionValue: e.target.checked,
+                            })
+                          );
+                        }}
+                        checked={hiraganaOptions.gojuuon}
+                      />
+                    }
+                    label='Main Kana'
+                    labelPlacement='top'
+                  />
+                </Grid>
+
+                <Grid item>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name='dakuon'
+                        onChange={(e) => {
+                          dispatch(
+                            updateHiraganaOptions({
+                              optionName: e.target.name,
+                              optionValue: e.target.checked,
+                            })
+                          );
+                        }}
+                        checked={hiraganaOptions.dakuon}
+                      />
+                    }
+                    label='Dakuten Kana (tenten)'
+                    labelPlacement='top'
+                  />
+                </Grid>
+                <Grid item>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name='handakuon'
+                        onChange={(e) => {
+                          dispatch(
+                            updateHiraganaOptions({
+                              optionName: e.target.name,
+                              optionValue: e.target.checked,
+                            })
+                          );
+                        }}
+                        checked={hiraganaOptions.handakuon}
+                      />
+                    }
+                    label='Handakuon Kana (maru)'
+                    labelPlacement='top'
+                  />
+                </Grid>
+                <Grid item>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        name='youon'
+                        onChange={(e) => {
+                          dispatch(
+                            updateHiraganaOptions({
+                              optionName: e.target.name,
+                              optionValue: e.target.checked,
+                            })
+                          );
+                        }}
+                        checked={hiraganaOptions.youon}
+                      />
+                    }
+                    label='Combination Kana'
+                    labelPlacement='top'
+                  />
+                </Grid>
+              </Grid>
+            </FormGroup>
+          </SwipeableDrawer>
+        </>
+      )}
 
       {testMode && (
         <CardListWrapper>

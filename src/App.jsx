@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 
+import KanaProvider from './store/KanaProvider';
 import { useGeneral } from '@/store/GeneralProvider';
 import HiraganaProvider from '@/store/HiraganaProvider';
 import KatakanaProvider from '@/store/KatakanaProvider';
@@ -33,98 +34,100 @@ const App = () => {
     <ThemeProvider theme={themeSelection === 'light' ? lightTheme : darkTheme}>
       <CssBaseline />
       <HeaderMenu />
-      <HiraganaProvider>
-        <KatakanaProvider>
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <Suspense fallback={<Loader />}>
-                  <Home />
-                </Suspense>
-              }
-            />
-            <Route path='/hiragana'>
+      <KanaProvider>
+        <HiraganaProvider>
+          <KatakanaProvider>
+            <Routes>
               <Route
-                index
+                path='/'
                 element={
                   <Suspense fallback={<Loader />}>
-                    <Hiragana />
+                    <Home />
                   </Suspense>
                 }
               />
-              <Route
-                path='learn'
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <HiraganaLearn />
-                  </Suspense>
-                }
-              />
-              <Route
-                path='random'
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <HiraganaRandom />
-                  </Suspense>
-                }
-              />
-              <Route
-                path='test'
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <HiraganaTest />
-                  </Suspense>
-                }
-              />
-            </Route>
+              <Route path='/hiragana'>
+                <Route
+                  index
+                  element={
+                    <Suspense fallback={<Loader />}>
+                      <Hiragana />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path='learn'
+                  element={
+                    <Suspense fallback={<Loader />}>
+                      <HiraganaLearn />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path='random'
+                  element={
+                    <Suspense fallback={<Loader />}>
+                      <HiraganaRandom />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path='test'
+                  element={
+                    <Suspense fallback={<Loader />}>
+                      <HiraganaTest />
+                    </Suspense>
+                  }
+                />
+              </Route>
 
-            <Route path='/katakana'>
-              <Route
-                index
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <Katakana />
-                  </Suspense>
-                }
-              />
-              <Route
-                path='learn'
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <KatakanaLearn />
-                  </Suspense>
-                }
-              />
-              <Route
-                path='random'
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <KatakanaRandom />
-                  </Suspense>
-                }
-              />
-              <Route
-                path='test'
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <KatakanaTest />
-                  </Suspense>
-                }
-              />
-            </Route>
+              <Route path='/katakana'>
+                <Route
+                  index
+                  element={
+                    <Suspense fallback={<Loader />}>
+                      <Katakana />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path='learn'
+                  element={
+                    <Suspense fallback={<Loader />}>
+                      <KatakanaLearn />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path='random'
+                  element={
+                    <Suspense fallback={<Loader />}>
+                      <KatakanaRandom />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path='test'
+                  element={
+                    <Suspense fallback={<Loader />}>
+                      <KatakanaTest />
+                    </Suspense>
+                  }
+                />
+              </Route>
 
-            <Route
-              path='*'
-              element={
-                <Suspense fallback={<Loader />}>
-                  <NotFound />
-                </Suspense>
-              }
-            />
-          </Routes>
-        </KatakanaProvider>
-      </HiraganaProvider>
+              <Route
+                path='*'
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <NotFound />
+                  </Suspense>
+                }
+              />
+            </Routes>
+          </KatakanaProvider>
+        </HiraganaProvider>
+      </KanaProvider>
     </ThemeProvider>
   );
 };

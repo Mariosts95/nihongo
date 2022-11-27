@@ -33,14 +33,7 @@ const HiraganaProvider = ({ children }) => {
   // update hiragana options state on checkbox change
   const updateHiraganaOptions = (e) => {
     setHiraganaOptions((prev) => ({ ...prev, [e.target.name]: e.target.checked }));
-    if (e.target.checked) {
-      setHiragana((prev) => [
-        ...prev,
-        ...hiraganaData.filter((kana) => kana.type === e.target.name),
-      ]);
-    } else {
-      setHiragana(hiragana.filter((kana) => kana.type !== e.target.name));
-    }
+    updateHiragana(e);
   };
 
   const resetHiragana = () => {
