@@ -86,7 +86,7 @@ const HeaderMenu = () => {
 
         <Button size='small' aria-label='menu' sx={{ mr: 1 }}>
           <NavLink to='/'>
-            <img style={{ display: 'block' }} src='favicon/favicon-32x32.png' alt='japanese flag' />
+            <img style={{ display: 'block' }} src='favicon-32x32.png' alt='japanese flag' />
           </NavLink>
         </Button>
       </Toolbar>
