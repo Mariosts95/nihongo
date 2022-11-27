@@ -7,6 +7,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import HiraganaProvider from './store/HiraganaProvider';
 import { useThemeSelection } from './store/ThemeSelectionProvider';
 
+import Test from './pages/Test';
+
 import HeaderMenu from './components/HeaderMenu';
 import Loader from './components/Loader';
 
@@ -34,7 +36,7 @@ const App = () => {
             }
           />
           <Route
-            path='/learn'
+            path='/learn-hiragana'
             element={
               <Suspense fallback={<Loader />}>
                 <Learn />
@@ -42,10 +44,18 @@ const App = () => {
             }
           />
           <Route
-            path='/random-kana'
+            path='/random-hiragana'
             element={
               <Suspense fallback={<Loader />}>
                 <RandomKana />
+              </Suspense>
+            }
+          />
+          <Route
+            path='/test-hiragana'
+            element={
+              <Suspense fallback={<Loader />}>
+                <Test />
               </Suspense>
             }
           />

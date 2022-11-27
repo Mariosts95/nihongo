@@ -1,11 +1,11 @@
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
 import { UseHiragana } from '../store/HiraganaProvider';
 
 import HiraganaOptions from '../components/HiraganaOptions';
 import Loader from '../components/Loader';
+import PageWrapper from '../components/PageWrapper';
 import KanaCard from '../components/SingleKanaCard';
 
 const Learn = () => {
@@ -16,7 +16,7 @@ const Learn = () => {
   }
 
   return (
-    <Paper elevation={3} sx={{ p: 2 }}>
+    <PageWrapper>
       <Typography variant='h5' textAlign='center' gutterBottom>
         Learn Hiragana (ひらがな) {hiragana.length ? `- ${hiragana.length} characters` : ''}
       </Typography>
@@ -33,7 +33,7 @@ const Learn = () => {
           </Grid>
         ))}
       </Grid>
-    </Paper>
+    </PageWrapper>
   );
 };
 

@@ -1,8 +1,8 @@
+import { randomInt } from '../utils/helpers';
+
 import { createContext, useContext, useState } from 'react';
 
 import hiraganaData from '../assets/hiragana.json';
-
-import { randomInt } from '../utils/helpers';
 
 // create context
 const HiraganaContext = createContext();
@@ -23,7 +23,10 @@ const HiraganaProvider = ({ children }) => {
   // Hiragana types "gojuuon", "dakuon", "handakuon", "youon"
   const updateHiragana = (e) => {
     if (e.target.checked) {
-      setHiragana((prev) => [...prev, ...hiraganaData.filter((kana) => kana.type === e.target.name)]);
+      setHiragana((prev) => [
+        ...prev,
+        ...hiraganaData.filter((kana) => kana.type === e.target.name),
+      ]);
     } else {
       setHiragana(hiragana.filter((kana) => kana.type !== e.target.name));
     }
@@ -33,7 +36,10 @@ const HiraganaProvider = ({ children }) => {
   const updateHiraganaOptions = (e) => {
     setHiraganaOptions((prev) => ({ ...prev, [e.target.name]: e.target.checked }));
     if (e.target.checked) {
-      setHiragana((prev) => [...prev, ...hiraganaData.filter((kana) => kana.type === e.target.name)]);
+      setHiragana((prev) => [
+        ...prev,
+        ...hiraganaData.filter((kana) => kana.type === e.target.name),
+      ]);
     } else {
       setHiragana(hiragana.filter((kana) => kana.type !== e.target.name));
     }
@@ -41,6 +47,16 @@ const HiraganaProvider = ({ children }) => {
 
   const updateHiraganaDisplayJap = () => {
     setHiraganaDisplayJap((prev) => !prev);
+  };
+
+  const resetHiragana = () => {
+    setHiragana([]);
+    setHiraganaOptions({
+      gojuuon: false,
+      dakuon: false,
+      handakuon: false,
+      youon: false,
+    });
   };
 
   // Get random kana from hiragana state
@@ -59,6 +75,7 @@ const HiraganaProvider = ({ children }) => {
         updateHiraganaOptions,
         hiraganaDisplayJap,
         updateHiraganaDisplayJap,
+        resetHiragana,
       }}
     >
       {children}
