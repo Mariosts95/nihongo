@@ -4,14 +4,15 @@ import { Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-import { UseHiragana } from '../store/HiraganaProvider';
+import { UseHiragana } from '@/store/HiraganaProvider';
 
-import HiraganaOptions from '../components/HiraganaOptions';
-import Loader from '../components/Loader';
-import PageWrapper from '../components/PageWrapper';
-import TestCard from '../components/TestCard';
+import TestCard from '@/components/Cards/TestCard';
+import HiraganaOptions from '@/components/UI/HiraganaOptions';
+import Loader from '@/components/UI/Loader';
+import CardListWrapper from '@/components/Wrappers/CardListWrapper';
+import PageWrapper from '@/components/Wrappers/PageWrapper';
 
-const Test = () => {
+const HiraganaTest = () => {
   const [testMode, setTestMode] = useState(false);
 
   const { hiragana, resetHiragana } = UseHiragana();
@@ -45,13 +46,13 @@ const Test = () => {
       {!testMode && <HiraganaOptions />}
 
       {testMode && (
-        <Grid spacing={2} container sx={{ p: { xs: 0, md: 2 } }}>
-          {hiragana.map((kana, i) => (
-            <Grid key={i} item xs={6} sm={4} md={3} lg={2}>
-              <TestCard kana={kana.kana} romaji={kana.romaji} />
+        <CardListWrapper>
+          {hiragana.map((hiragana) => (
+            <Grid key={hiragana.kana} item xs={6} sm={4} md={3} lg={2.4}>
+              <TestCard kana={hiragana.kana} romaji={hiragana.romaji} />
             </Grid>
           ))}
-        </Grid>
+        </CardListWrapper>
       )}
 
       {!testMode && hiragana.length ? (
@@ -77,4 +78,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default HiraganaTest;
