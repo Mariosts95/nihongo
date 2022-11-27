@@ -3,10 +3,10 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-import { useThemeSelection } from '../store/ThemeSelectionProvider';
+import { useGeneral } from '@/store/GeneralProvider';
 
 const ThemeSwitch = ({ sx }) => {
-  const { themeSelection, updateThemeSelection } = useThemeSelection();
+  const { themeSelection, updateThemeSelection } = useGeneral();
 
   return (
     <ToggleButtonGroup

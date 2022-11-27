@@ -8,7 +8,7 @@ import FormGroup from '@mui/material/FormGroup';
 import Grid from '@mui/material/Grid';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
-import { UseHiragana } from '../store/HiraganaProvider';
+import { UseHiragana } from '@/store/HiraganaProvider';
 
 const HiraganaOptions = () => {
   const [openFilters, setOpenFilters] = useState(false);

@@ -4,14 +4,18 @@ import useLocalStorageState from '../hooks/useLocalStorageState';
 
 const ThemeSelectionContext = createContext();
 
-const useThemeSelection = () => useContext(ThemeSelectionContext);
+const useGeneral = () => useContext(ThemeSelectionContext);
 
-const ThemeSelectionProvider = ({ children }) => {
+const GeneralProvider = ({ children }) => {
+  // App theme
   const [themeSelection, setThemeSelection] = useState('light');
   const [themeSelectionLS, setThemeSelectionLS] = useLocalStorageState(
     'themeSelection',
     themeSelection
   );
+
+  // Random kana display language, Japanese or English (default) true = Japanese
+  const [kanaDisplayLanguage, setKanaDisplayLanguage] = useState(true);
 
   // if there is a theme in local storage, set it to the themeSelection state
   useEffect(() => {
@@ -29,11 +33,17 @@ const ThemeSelectionProvider = ({ children }) => {
     setThemeSelection((prevState) => (prevState === 'light' ? 'dark' : 'light'));
   };
 
+  const updateKanaDisplayLang = () => {
+    setKanaDisplayLanguage((prev) => !prev);
+  };
+
   return (
     <ThemeSelectionContext.Provider
       value={{
         themeSelection,
         updateThemeSelection,
+        kanaDisplayLanguage,
+        updateKanaDisplayLang,
       }}
     >
       {children}
@@ -41,6 +51,6 @@ const ThemeSelectionProvider = ({ children }) => {
   );
 };
 
-export { useThemeSelection };
+export { useGeneral };
 
-export default ThemeSelectionProvider;
+export default GeneralProvider;

@@ -9,13 +9,12 @@ import IconButton from '@mui/material/IconButton';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Toolbar from '@mui/material/Toolbar';
 
-import ThemeSwitch from './ThemeSwitch';
+import ThemeSwitch from '@/components/UI/ThemeSwitch';
 
 const pages = [
   { name: 'Home', path: '/' },
-  { name: 'Learn Hiragana', path: '/learn-hiragana' },
-  { name: 'Test Hiragana', path: '/test-hiragana' },
-  { name: 'Random Hiragana', path: '/random-hiragana' },
+  { name: 'Hiragana', path: '/hiragana' },
+  { name: 'Katakana', path: '/katakana' },
 ];
 
 const HeaderMenu = () => {
@@ -63,22 +62,21 @@ const HeaderMenu = () => {
               }}
             >
               {pages.map((page) => (
-                <NavLink key={page.name} to={page.path} style={{ textDecoration: 'none' }}>
-                  {({ isActive }) => (
-                    <Button
-                      onClick={handleCloseNavMenu}
-                      sx={{
-                        my: 1,
-                        color: isActive ? 'primary.main' : 'secondary.main',
-                        display: 'block',
-                      }}
-                      type='link'
-                      fullWidth
-                    >
-                      {page.name}
-                    </Button>
-                  )}
-                </NavLink>
+                <Button
+                  key={page.name}
+                  onClick={handleCloseNavMenu}
+                  component={NavLink}
+                  to={page.path}
+                  sx={{
+                    my: 1,
+                    color: 'primary.main',
+                    display: 'block',
+                  }}
+                  type='link'
+                  fullWidth
+                >
+                  {page.name}
+                </Button>
               ))}
               <ThemeSwitch sx={{ marginTop: 'auto' }} />
             </Box>

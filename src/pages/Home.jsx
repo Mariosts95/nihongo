@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 
-import PageWrapper from '../components/PageWrapper';
-import QuoteCard from '../components/QuoteCard';
+import QuoteCard from '@/components/Cards/QuoteCard';
+import PageWrapper from '@/components/Wrappers/PageWrapper';
 
 const Home = () => {
   return (

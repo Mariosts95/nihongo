@@ -6,15 +6,15 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-import { UseHiragana } from '../store/HiraganaProvider';
+import { useGeneral } from '@/store/GeneralProvider';
 
 const FlipSingleKanaCard = ({ kana, romaji }) => {
-  const { hiraganaDisplayJap } = UseHiragana();
-  const [displaySide, setDisplaySide] = useState(hiraganaDisplayJap);
+  const { kanaDisplayLanguage } = useGeneral();
+  const [displaySide, setDisplaySide] = useState(kanaDisplayLanguage);
 
   useEffect(() => {
-    setDisplaySide(hiraganaDisplayJap);
-  }, [hiraganaDisplayJap, kana]);
+    setDisplaySide(kanaDisplayLanguage);
+  }, [kanaDisplayLanguage, kana]);
 
   const flipCard = () => {
     setDisplaySide(!displaySide);

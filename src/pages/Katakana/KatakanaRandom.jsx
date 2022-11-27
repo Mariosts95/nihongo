@@ -4,65 +4,65 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import { UseHiragana } from '../store/HiraganaProvider';
+import { UseKatakana } from '@/store/KatakanaProvider';
 
-import FlipSingleKanaCard from '../components/FlipSingleKanaCard';
-import HiraganaLanguageSwitch from '../components/HiraganaLanguageSwitch';
-import HiraganaOptions from '../components/HiraganaOptions';
-import Loader from '../components/Loader';
-import PageWrapper from '../components/PageWrapper';
+import FlipSingleKanaCard from '@/components/Cards/FlipSingleKanaCard';
+import KatakanaOptions from '@/components/UI/KatakanaOptions';
+import LanguageSwitch from '@/components/UI/LanguageSwitch';
+import Loader from '@/components/UI/Loader';
+import PageWrapper from '@/components/Wrappers/PageWrapper';
 
-const RandomKana = () => {
+const KatakanaRandom = () => {
   const [randomKana, setRandomKana] = useState(null);
 
-  const { hiragana, getRandomHiragana } = UseHiragana();
+  const { katakana, getRandomKatakana } = UseKatakana();
 
-  if (!hiragana) {
+  if (!katakana) {
     return <Loader />;
   }
 
   useEffect(() => {
-    if (hiragana.length === 0) {
+    if (katakana.length === 0) {
       setRandomKana(null);
     }
-  }, [hiragana]);
+  }, [katakana]);
 
   const getRandomKana = () => {
-    setRandomKana(getRandomHiragana);
+    setRandomKana(getRandomKatakana);
   };
 
   return (
     <PageWrapper>
       <Typography variant='h5' textAlign='center' gutterBottom>
-        Generate a random Hiragana (ひらがな) character
+        Generate a random Katakana (カタカナ) character
       </Typography>
 
-      {!hiragana.length ? (
+      {!katakana.length ? (
         <Typography variant='body2' textAlign='center' gutterBottom>
           Open the filters to choose from which characters to learn.
         </Typography>
       ) : null}
-      <HiraganaOptions />
+      <KatakanaOptions />
 
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Typography variant='body1' sx={{ mr: 1 }}>
           Display language:
         </Typography>
-        <HiraganaLanguageSwitch />
+        <LanguageSwitch />
       </Box>
 
-      {hiragana.length ? (
+      {katakana.length ? (
         <Button
           onClick={getRandomKana}
           variant='contained'
           sx={{ my: 2, mx: 'auto', display: 'block' }}
         >
-          New Hiragana
+          New Katakana
         </Button>
       ) : (
         <Typography variant='body2' textAlign='center'>
           Please select which kana you want to display and then click the button to display a random
-          hiragana.
+          katakana.
         </Typography>
       )}
       {randomKana && <FlipSingleKanaCard kana={randomKana.kana} romaji={randomKana.romaji} />}
@@ -70,4 +70,4 @@ const RandomKana = () => {
   );
 };
 
-export default RandomKana;
+export default KatakanaRandom;

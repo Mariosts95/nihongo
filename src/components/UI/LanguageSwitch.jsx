@@ -1,21 +1,19 @@
-// MUI
 import Box from '@mui/material/Box';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 
-// Data
-import { UseHiragana } from '../store/HiraganaProvider';
+import { useGeneral } from '@/store/GeneralProvider';
 
-const HiraganaLanguageSwitch = () => {
-  const { hiraganaDisplayJap, updateHiraganaDisplayJap } = UseHiragana();
+const LanguageSwitch = () => {
+  const { kanaDisplayLanguage, updateKanaDisplayLang } = useGeneral();
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', my: 2 }}>
       <Typography variant='body1'>English</Typography>
-      <Switch checked={hiraganaDisplayJap} onChange={updateHiraganaDisplayJap} />
+      <Switch checked={kanaDisplayLanguage} onChange={updateKanaDisplayLang} />
       <Typography variant='body1'>Japanese</Typography>
     </Box>
   );
 };
 
-export default HiraganaLanguageSwitch;
+export default LanguageSwitch;

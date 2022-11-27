@@ -24,7 +24,7 @@ const TestCard = ({ kana, romaji }) => {
           isCorrect === null ? 'primary.main' : isCorrect ? 'success.light' : 'error.main',
       }}
     >
-      <CardContent sx={{ textAlign: 'center', opacity: isCorrect && 0.3 }}>
+      <CardContent sx={{ display: 'block', textAlign: 'center', opacity: isCorrect && 0.3 }}>
         <Typography variant='h1' color='text.primary' gutterBottom>
           {kana}
         </Typography>
@@ -39,7 +39,8 @@ const TestCard = ({ kana, romaji }) => {
             error={isCorrect === false}
             helperText={isCorrect === false ? 'Incorrect entry.' : ''}
             disabled={isCorrect === true}
-            sx={{ width: '100%', mb: 1 }}
+            fullWidth
+            sx={{ mb: 1 }}
             autoComplete='off'
             inputProps={{ style: { textAlign: 'center' } }}
           />

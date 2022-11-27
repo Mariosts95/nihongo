@@ -4,7 +4,6 @@ import { createContext, useContext, useState } from 'react';
 
 import hiraganaData from '../assets/hiragana.json';
 
-// create context
 const HiraganaContext = createContext();
 
 const UseHiragana = () => useContext(HiraganaContext);
@@ -17,7 +16,6 @@ const HiraganaProvider = ({ children }) => {
     handakuon: false,
     youon: false,
   });
-  const [hiraganaDisplayJap, setHiraganaDisplayJap] = useState(true);
 
   // Update hiragana state on checkbox change
   // Hiragana types "gojuuon", "dakuon", "handakuon", "youon"
@@ -45,10 +43,6 @@ const HiraganaProvider = ({ children }) => {
     }
   };
 
-  const updateHiraganaDisplayJap = () => {
-    setHiraganaDisplayJap((prev) => !prev);
-  };
-
   const resetHiragana = () => {
     setHiragana([]);
     setHiraganaOptions({
@@ -73,8 +67,6 @@ const HiraganaProvider = ({ children }) => {
         filterHiragana,
         hiraganaOptions,
         updateHiraganaOptions,
-        hiraganaDisplayJap,
-        updateHiraganaDisplayJap,
         resetHiragana,
       }}
     >
