@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-// Data
 import { UseHiragana } from '../store/HiraganaProvider';
 
 import FlipSingleKanaCard from '../components/FlipSingleKanaCard';
 import HiraganaLanguageSwitch from '../components/HiraganaLanguageSwitch';
 import HiraganaOptions from '../components/HiraganaOptions';
 import Loader from '../components/Loader';
+import PageWrapper from '../components/PageWrapper';
 
 const RandomKana = () => {
   const [randomKana, setRandomKana] = useState(null);
@@ -33,7 +32,7 @@ const RandomKana = () => {
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 2 }}>
+    <PageWrapper>
       <Typography variant='h5' textAlign='center' gutterBottom>
         Generate a random Hiragana (ひらがな) character
       </Typography>
@@ -67,7 +66,7 @@ const RandomKana = () => {
         </Typography>
       )}
       {randomKana && <FlipSingleKanaCard kana={randomKana.kana} romaji={randomKana.romaji} />}
-    </Paper>
+    </PageWrapper>
   );
 };
 

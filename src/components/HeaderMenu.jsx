@@ -13,8 +13,9 @@ import ThemeSwitch from './ThemeSwitch';
 
 const pages = [
   { name: 'Home', path: '/' },
-  { name: 'Learn', path: '/learn' },
-  { name: 'Random Kana', path: '/random-kana' },
+  { name: 'Learn Hiragana', path: '/learn-hiragana' },
+  { name: 'Test Hiragana', path: '/test-hiragana' },
+  { name: 'Random Hiragana', path: '/random-hiragana' },
 ];
 
 const HeaderMenu = () => {
@@ -68,7 +69,7 @@ const HeaderMenu = () => {
                       onClick={handleCloseNavMenu}
                       sx={{
                         my: 1,
-                        color: isActive ? 'theme.primary.main' : 'theme.secondary.main',
+                        color: isActive ? 'primary.main' : 'secondary.main',
                         display: 'block',
                       }}
                       type='link'
