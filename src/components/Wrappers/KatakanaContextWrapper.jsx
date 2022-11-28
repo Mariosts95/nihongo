@@ -1,11 +1,16 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import KatakanaProvider from '@/store/KatakanaProvider';
 
+import Loader from '@/components/UI/Loader';
+
 const KatakanaContextWrapper = () => {
   return (
     <KatakanaProvider>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </KatakanaProvider>
   );
 };

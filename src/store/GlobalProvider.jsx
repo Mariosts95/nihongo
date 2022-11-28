@@ -1,12 +1,12 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import useLocalStorageState from '../hooks/useLocalStorageState';
+import useLocalStorageState from '@/hooks/useLocalStorageState';
 
-const ThemeSelectionContext = createContext();
+const GlobalContext = createContext();
 
-const useGeneral = () => useContext(ThemeSelectionContext);
+const useGlobal = () => useContext(GlobalContext);
 
-const GeneralProvider = ({ children }) => {
+const GlobalProvider = ({ children }) => {
   // App theme
   const [themeSelection, setThemeSelection] = useState('light');
   const [themeSelectionLS, setThemeSelectionLS] = useLocalStorageState(
@@ -38,7 +38,7 @@ const GeneralProvider = ({ children }) => {
   };
 
   return (
-    <ThemeSelectionContext.Provider
+    <GlobalContext.Provider
       value={{
         themeSelection,
         updateThemeSelection,
@@ -47,10 +47,10 @@ const GeneralProvider = ({ children }) => {
       }}
     >
       {children}
-    </ThemeSelectionContext.Provider>
+    </GlobalContext.Provider>
   );
 };
 
-export { useGeneral };
+export { useGlobal };
 
-export default GeneralProvider;
+export default GlobalProvider;
