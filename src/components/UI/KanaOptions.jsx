@@ -8,12 +8,8 @@ import FormGroup from '@mui/material/FormGroup';
 import Grid from '@mui/material/Grid';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
-import { UseHiragana } from '@/store/HiraganaProvider';
-
-const HiraganaOptions = () => {
+const KanaOptions = ({ kanaOptions, updateKanaOptions }) => {
   const [openFilters, setOpenFilters] = useState(false);
-
-  const { hiraganaOptions, updateHiraganaOptions } = UseHiragana();
 
   const handleOpenFilters = () => {
     setOpenFilters(true);
@@ -55,8 +51,8 @@ const HiraganaOptions = () => {
                 control={
                   <Checkbox
                     name='gojuuon'
-                    onChange={updateHiraganaOptions}
-                    checked={hiraganaOptions.gojuuon}
+                    onChange={updateKanaOptions}
+                    checked={kanaOptions.gojuuon}
                   />
                 }
                 label='Main Kana'
@@ -69,8 +65,8 @@ const HiraganaOptions = () => {
                 control={
                   <Checkbox
                     name='dakuon'
-                    onChange={updateHiraganaOptions}
-                    checked={hiraganaOptions.dakuon}
+                    onChange={updateKanaOptions}
+                    checked={kanaOptions.dakuon}
                   />
                 }
                 label='Dakuten Kana (tenten)'
@@ -82,8 +78,8 @@ const HiraganaOptions = () => {
                 control={
                   <Checkbox
                     name='handakuon'
-                    onChange={updateHiraganaOptions}
-                    checked={hiraganaOptions.handakuon}
+                    onChange={updateKanaOptions}
+                    checked={kanaOptions.handakuon}
                   />
                 }
                 label='Handakuon Kana (maru)'
@@ -93,11 +89,7 @@ const HiraganaOptions = () => {
             <Grid item>
               <FormControlLabel
                 control={
-                  <Checkbox
-                    name='youon'
-                    onChange={updateHiraganaOptions}
-                    checked={hiraganaOptions.youon}
-                  />
+                  <Checkbox name='youon' onChange={updateKanaOptions} checked={kanaOptions.youon} />
                 }
                 label='Combination Kana'
                 labelPlacement='top'
@@ -110,4 +102,4 @@ const HiraganaOptions = () => {
   );
 };
 
-export default HiraganaOptions;
+export default KanaOptions;

@@ -4,13 +4,13 @@ import Typography from '@mui/material/Typography';
 import { UseHiragana } from '@/store/HiraganaProvider';
 
 import SingleKanaCard from '@/components/Cards/SingleKanaCard';
-import HiraganaOptions from '@/components/UI/HiraganaOptions';
+import KanaOptions from '@/components/UI/KanaOptions';
 import Loader from '@/components/UI/Loader';
 import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
 const HiraganaLearn = () => {
-  const { hiragana } = UseHiragana();
+  const { hiragana, hiraganaOptions, updateHiraganaOptions } = UseHiragana();
 
   if (!hiragana) {
     return <Loader />;
@@ -29,7 +29,7 @@ const HiraganaLearn = () => {
         </Typography>
       ) : null}
 
-      <HiraganaOptions />
+      <KanaOptions kanaOptions={hiraganaOptions} updateKanaOptions={updateHiraganaOptions} />
 
       <CardListWrapper>
         {hiragana.map((hiragana) => (

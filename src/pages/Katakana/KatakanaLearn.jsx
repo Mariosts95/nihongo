@@ -4,13 +4,13 @@ import Typography from '@mui/material/Typography';
 import { UseKatakana } from '@/store/KatakanaProvider';
 
 import SingleKanaCard from '@/components/Cards/SingleKanaCard';
-import KatakanaOptions from '@/components/UI/KatakanaOptions';
+import KanaOptions from '@/components/UI/KanaOptions';
 import Loader from '@/components/UI/Loader';
 import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
 const KatakanaLearn = () => {
-  const { katakana } = UseKatakana();
+  const { katakana, katakanaOptions, updateKatakanaOptions } = UseKatakana();
 
   if (!katakana) {
     return <Loader />;
@@ -29,7 +29,7 @@ const KatakanaLearn = () => {
         </Typography>
       ) : null}
 
-      <KatakanaOptions />
+      <KanaOptions kanaOptions={katakanaOptions} updateKanaOptions={updateKatakanaOptions} />
 
       <CardListWrapper>
         {katakana.map((katakana) => (
