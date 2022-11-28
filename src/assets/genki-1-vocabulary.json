@@ -1,5 +1,59 @@
 [
     {
+        "hiragana": "おはよう",
+        "kanji": "",
+        "romaji": "ohayou",
+        "type": "expression",
+        "english": "Good morning.",
+        "lesson": 0,
+        "edition": 3
+    },
+    {
+        "hiragana": "おはようございます",
+        "kanji": "",
+        "romaji": "ohayougozaimasu",
+        "type": "expression",
+        "english": "Good morning. (polite)",
+        "lesson": 0,
+        "edition": 3
+    },
+    {
+        "hiragana": "こんにちは",
+        "kanji": "",
+        "romaji": "konnichiwa",
+        "type": "expression",
+        "english": "Good afternoon.",
+        "lesson": 0,
+        "edition": 3
+    },
+    {
+        "hiragana": "こんばんは",
+        "kanji": "",
+        "romaji": "konbanwa",
+        "type": "expression",
+        "english": "Good evening.",
+        "lesson": 0,
+        "edition": 3
+    },
+    {
+        "hiragana": "さようなら",
+        "kanji": "",
+        "romaji": "sayounara",
+        "type": "expression",
+        "english": "Good-bye.",
+        "lesson": 0,
+        "edition": 3
+    },
+    {
+        "hiragana": "おやすみ (なさい)",
+        "kanji": "",
+        "romaji": "oyasumi (nasai)",
+        "type": "expression",
+        "english": "Good night.",
+        "lesson": 0,
+        "edition": 3
+    },
+    {
         "hiragana": "ありがとう",
         "kanji": "",
         "romaji": "arigatou",
@@ -18,20 +72,20 @@
         "edition": 3
     },
     {
+        "hiragana": "すみません",
+        "kanji": "",
+        "romaji": "sumimasen",
+        "type": "expression",
+        "english": "Excuse me.;  I’m sorry.",
+        "lesson": 0,
+        "edition": 3
+    },
+    {
         "hiragana": "いいえ",
         "kanji": "",
         "romaji": "iie",
         "type": "expression",
         "english": "No.; Not at all.",
-        "lesson": 0,
-        "edition": 3
-    },
-    {
-        "hiragana": "いただきます",
-        "kanji": "",
-        "romaji": "itadakimasu",
-        "type": "expression",
-        "english": "Thank you for the meal. (before eating)",
         "lesson": 0,
         "edition": 3
     },
@@ -54,6 +108,15 @@
         "edition": 3
     },
     {
+        "hiragana": "ただいま",
+        "kanji": "",
+        "romaji": "tadaima",
+        "type": "expression",
+        "english": "I’m home.",
+        "lesson": 0,
+        "edition": 3
+    },
+    {
         "hiragana": "おかえり (なさい)",
         "kanji": "",
         "romaji": "okaeri (nasai)",
@@ -63,29 +126,11 @@
         "edition": 3
     },
     {
-        "hiragana": "おはよう",
+        "hiragana": "いただきます",
         "kanji": "",
-        "romaji": "ohayou",
+        "romaji": "itadakimasu",
         "type": "expression",
-        "english": "Good morning.",
-        "lesson": 0,
-        "edition": 3
-    },
-    {
-        "hiragana": "おはようございます",
-        "kanji": "",
-        "romaji": "ohayougozaimasu",
-        "type": "expression",
-        "english": "Good morning. (polite)",
-        "lesson": 0,
-        "edition": 3
-    },
-    {
-        "hiragana": "おやすみ (なさい)",
-        "kanji": "",
-        "romaji": "oyasumi (nasai)",
-        "type": "expression",
-        "english": "Good night.",
+        "english": "Thank you for the meal. (before eating)",
         "lesson": 0,
         "edition": 3
     },
@@ -99,47 +144,11 @@
         "edition": 3
     },
     {
-        "hiragana": "こんにちは",
+        "hiragana": "はじめまして",
         "kanji": "",
-        "romaji": "konnichiha",
+        "romaji": "hajimemashite",
         "type": "expression",
-        "english": "Good afternoon.",
-        "lesson": 0,
-        "edition": 3
-    },
-    {
-        "hiragana": "こんばんは",
-        "kanji": "",
-        "romaji": "konbanha",
-        "type": "expression",
-        "english": "Good evening.",
-        "lesson": 0,
-        "edition": 3
-    },
-    {
-        "hiragana": "さようなら",
-        "kanji": "",
-        "romaji": "sayounara",
-        "type": "expression",
-        "english": "Good-bye.",
-        "lesson": 0,
-        "edition": 3
-    },
-    {
-        "hiragana": "すみません",
-        "kanji": "",
-        "romaji": "sumimasen",
-        "type": "expression",
-        "english": "Excuse me.;  I’m sorry.",
-        "lesson": 0,
-        "edition": 3
-    },
-    {
-        "hiragana": "ただいま",
-        "kanji": "",
-        "romaji": "tadaima",
-        "type": "expression",
-        "english": "I’m home.",
+        "english": "How do you do ?",
         "lesson": 0,
         "edition": 3
     },
@@ -149,15 +158,6 @@
         "romaji": "~desu",
         "type": "expression",
         "english": "I am... .",
-        "lesson": 0,
-        "edition": 3
-    },
-    {
-        "hiragana": "はじめまして",
-        "kanji": "",
-        "romaji": "hajimemashite",
-        "type": "expression",
-        "english": "How do you do ?",
         "lesson": 0,
         "edition": 3
     },

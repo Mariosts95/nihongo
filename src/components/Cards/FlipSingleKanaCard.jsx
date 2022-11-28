@@ -6,10 +6,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-import { useGeneral } from '@/store/GeneralProvider';
+import { useGlobal } from '@/store/GlobalProvider';
 
 const FlipSingleKanaCard = ({ kana, romaji }) => {
-  const { kanaDisplayLanguage } = useGeneral();
+  const { kanaDisplayLanguage } = useGlobal();
   const [displaySide, setDisplaySide] = useState(kanaDisplayLanguage);
 
   useEffect(() => {

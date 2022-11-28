@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import GeneralProvider from '@/store/GeneralProvider';
+import GlobalProvider from '@/store/GlobalProvider';
 
 import App from '@/App.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
-      <GeneralProvider>
+      <GlobalProvider>
         <App />
-      </GeneralProvider>
+      </GlobalProvider>
     </Router>
   </React.StrictMode>
 );

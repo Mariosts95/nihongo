@@ -11,10 +11,13 @@ import Toolbar from '@mui/material/Toolbar';
 
 import ThemeSwitch from '@/components/UI/ThemeSwitch';
 
+import logo from '@/assets/logo.png';
+
 const pages = [
   { name: 'Home', path: '/' },
   { name: 'Hiragana', path: '/hiragana' },
   { name: 'Katakana', path: '/katakana' },
+  { name: 'Vocabulary', path: '/vocabulary' },
 ];
 
 const HeaderMenu = () => {
@@ -85,7 +88,7 @@ const HeaderMenu = () => {
 
         <Button size='small' aria-label='menu' sx={{ mr: 1 }}>
           <NavLink to='/'>
-            <img style={{ display: 'block' }} src='favicon/favicon-32x32.png' alt='japanese flag' />
+            <img style={{ display: 'block' }} src={logo} alt='japanese flag' />
           </NavLink>
         </Button>
       </Toolbar>
