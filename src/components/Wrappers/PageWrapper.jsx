@@ -1,5 +1,7 @@
 import Paper from '@mui/material/Paper';
 
+import ScrollToTop from '@/components/UI/ScrollToTop';
+
 const PageWrapper = ({ children }) => {
   return (
     <Paper
@@ -11,6 +13,7 @@ const PageWrapper = ({ children }) => {
       }}
     >
       {children}
+      <ScrollToTop />
     </Paper>
   );
 };
