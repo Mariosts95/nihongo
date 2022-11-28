@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fab from '@mui/material/Fab';
+import Zoom from '@mui/material/Zoom';
 
 const ScrollToTop = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -25,23 +26,29 @@ const ScrollToTop = () => {
       setShowScroll(false);
     }
   };
+
   return (
-    <Fab
-      color='primary'
-      size='medium'
-      aria-label='scroll back to top'
-      sx={{
-        visibility: showScroll ? 'visible' : 'hidden',
-        opacity: showScroll ? 1 : 0,
-        transition: 'visibility 0.2s, opacity 0.2s linear',
-        position: 'fixed',
-        bottom: 16,
-        right: 16,
+    <Zoom
+      in={showScroll}
+      timeout={{
+        enter: 250,
+        exit: 250,
       }}
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
     >
-      <KeyboardArrowUpIcon />
-    </Fab>
+      <Fab
+        color='primary'
+        size='medium'
+        aria-label='scroll back to top'
+        sx={{
+          position: 'fixed',
+          bottom: 16,
+          right: 16,
+        }}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
+        <KeyboardArrowUpIcon />
+      </Fab>
+    </Zoom>
   );
 };
 
