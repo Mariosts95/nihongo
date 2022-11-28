@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { UseHiragana } from '@/store/HiraganaProvider';
 
 import FlipSingleKanaCard from '@/components/Cards/FlipSingleKanaCard';
-import HiraganaOptions from '@/components/UI/HiraganaOptions';
+import KanaOptions from '@/components/UI/KanaOptions';
 import LanguageSwitch from '@/components/UI/LanguageSwitch';
 import Loader from '@/components/UI/Loader';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
@@ -15,7 +15,7 @@ import PageWrapper from '@/components/Wrappers/PageWrapper';
 const HiraganaRandom = () => {
   const [randomKana, setRandomKana] = useState(null);
 
-  const { hiragana, getRandomHiragana } = UseHiragana();
+  const { hiragana, getRandomHiragana, hiraganaOptions, updateHiraganaOptions } = UseHiragana();
 
   if (!hiragana) {
     return <Loader />;
@@ -42,7 +42,8 @@ const HiraganaRandom = () => {
           Open the filters to choose from which characters to learn.
         </Typography>
       ) : null}
-      <HiraganaOptions />
+
+      <KanaOptions kanaOptions={hiraganaOptions} updateKanaOptions={updateHiraganaOptions} />
 
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Typography variant='body1' sx={{ mr: 1 }}>

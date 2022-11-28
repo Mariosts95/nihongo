@@ -18,6 +18,7 @@ const Katakana = () => {
       <Typography variant='h5' textAlign='center' gutterBottom>
         Katakana (カタカナ)
       </Typography>
+
       <Grid
         container
         flexDirection='column'

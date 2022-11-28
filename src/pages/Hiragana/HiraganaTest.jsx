@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 import { UseHiragana } from '@/store/HiraganaProvider';
 
 import TestCard from '@/components/Cards/TestCard';
-import HiraganaOptions from '@/components/UI/HiraganaOptions';
+import KanaOptions from '@/components/UI/KanaOptions';
 import Loader from '@/components/UI/Loader';
 import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
@@ -15,7 +15,7 @@ import PageWrapper from '@/components/Wrappers/PageWrapper';
 const HiraganaTest = () => {
   const [testMode, setTestMode] = useState(false);
 
-  const { hiragana, resetHiragana } = UseHiragana();
+  const { hiragana, resetHiragana, hiraganaOptions, updateHiraganaOptions } = UseHiragana();
 
   if (!hiragana) {
     return <Loader />;
@@ -43,7 +43,9 @@ const HiraganaTest = () => {
         </Typography>
       ) : null}
 
-      {!testMode && <HiraganaOptions />}
+      {!testMode && (
+        <KanaOptions kanaOptions={hiraganaOptions} updateKanaOptions={updateHiraganaOptions} />
+      )}
 
       {testMode && (
         <CardListWrapper>

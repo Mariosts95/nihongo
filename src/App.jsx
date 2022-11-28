@@ -45,6 +45,7 @@ const App = () => {
             </Suspense>
           }
         />
+
         <Route path='/hiragana' element={<HiraganaContextWrapper />}>
           <Route index element={<Hiragana />} />
           <Route path='learn' element={<HiraganaLearn />} />

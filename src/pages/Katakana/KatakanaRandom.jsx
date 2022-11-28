@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { UseKatakana } from '@/store/KatakanaProvider';
 
 import FlipSingleKanaCard from '@/components/Cards/FlipSingleKanaCard';
-import KatakanaOptions from '@/components/UI/KatakanaOptions';
+import KanaOptions from '@/components/UI/KanaOptions';
 import LanguageSwitch from '@/components/UI/LanguageSwitch';
 import Loader from '@/components/UI/Loader';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
@@ -15,7 +15,7 @@ import PageWrapper from '@/components/Wrappers/PageWrapper';
 const KatakanaRandom = () => {
   const [randomKana, setRandomKana] = useState(null);
 
-  const { katakana, getRandomKatakana } = UseKatakana();
+  const { katakana, getRandomKatakana, katakanaOptions, updateKatakanaOptions } = UseKatakana();
 
   if (!katakana) {
     return <Loader />;
@@ -42,7 +42,8 @@ const KatakanaRandom = () => {
           Open the filters to choose from which characters to learn.
         </Typography>
       ) : null}
-      <KatakanaOptions />
+
+      <KanaOptions kanaOptions={katakanaOptions} updateKanaOptions={updateKatakanaOptions} />
 
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Typography variant='body1' sx={{ mr: 1 }}>

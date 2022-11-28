@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 import { UseKatakana } from '@/store/KatakanaProvider';
 
 import TestCard from '@/components/Cards/TestCard';
-import KatakanaOptions from '@/components/UI/KatakanaOptions';
+import KanaOptions from '@/components/UI/KanaOptions';
 import Loader from '@/components/UI/Loader';
 import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
@@ -15,7 +15,7 @@ import PageWrapper from '@/components/Wrappers/PageWrapper';
 const Katakana = () => {
   const [testMode, setTestMode] = useState(false);
 
-  const { katakana, resetKatakana } = UseKatakana();
+  const { katakana, resetKatakana, katakanaOptions, updateKatakanaOptions } = UseKatakana();
 
   if (!katakana) {
     return <Loader />;
@@ -43,7 +43,9 @@ const Katakana = () => {
         </Typography>
       ) : null}
 
-      {!testMode && <KatakanaOptions />}
+      {!testMode && (
+        <KanaOptions kanaOptions={katakanaOptions} updateKanaOptions={updateKatakanaOptions} />
+      )}
 
       {testMode && (
         <CardListWrapper>

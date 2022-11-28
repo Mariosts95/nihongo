@@ -1,8 +1,8 @@
-import { randomInt } from '../utils/helpers';
-
 import { createContext, useContext, useState } from 'react';
 
-import katakanaData from '../assets/katakana.json';
+import katakanaData from '@/assets/katakana.json';
+
+import { randomInt } from '@/utils/helpers';
 
 const KatakanaContext = createContext();
 
