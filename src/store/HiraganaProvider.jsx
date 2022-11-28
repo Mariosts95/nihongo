@@ -1,8 +1,8 @@
-import { randomInt } from '../utils/helpers';
-
 import { createContext, useContext, useState } from 'react';
 
-import hiraganaData from '../assets/hiragana.json';
+import hiraganaData from '@/assets/hiragana.json';
+
+import { randomInt } from '@/utils/helpers';
 
 const HiraganaContext = createContext();
 
