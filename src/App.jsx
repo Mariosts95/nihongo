@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 
 import { useGlobal } from '@/store/GlobalProvider';
+import VocabularyProvider from '@/store/VocabularyProvider';
 
 import HiraganaContextWrapper from './components/Wrappers/HiraganaContextWrapper';
 import KatakanaContextWrapper from './components/Wrappers/KatakanaContextWrapper';
@@ -65,7 +66,9 @@ const App = () => {
             index
             element={
               <Suspense fallback={<Loader />}>
-                <Vocabulary />
+                <VocabularyProvider>
+                  <Vocabulary />
+                </VocabularyProvider>
               </Suspense>
             }
           />

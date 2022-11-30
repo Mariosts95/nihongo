@@ -12,7 +12,10 @@ import Loader from '@/components/UI/Loader';
 import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
+import { shuffleArray } from '@/utils/helpers';
+
 const HiraganaTest = () => {
+  const [testData, setTestData] = useState([]);
   const [testMode, setTestMode] = useState(false);
 
   const { hiragana, resetHiragana, hiraganaOptions, updateHiraganaOptions } = UseHiragana();
@@ -23,6 +26,7 @@ const HiraganaTest = () => {
 
   const handleStartTestMode = () => {
     setTestMode(true);
+    setTestData(shuffleArray(hiragana));
   };
 
   const handleStopTestMode = () => {
@@ -49,7 +53,7 @@ const HiraganaTest = () => {
 
       {testMode && (
         <CardListWrapper>
-          {hiragana.map((hiragana) => (
+          {testData.map((hiragana) => (
             <Grid key={hiragana.kana} item xs={6} sm={4} md={3} lg={2.4}>
               <TestCard kana={hiragana.kana} romaji={hiragana.romaji} />
             </Grid>

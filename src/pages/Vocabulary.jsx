@@ -1,45 +1,57 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import FormControl from '@mui/material/FormControl';
+import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
+import { UseVocabulary } from '@/store/VocabularyProvider';
+
+import WordCard from '@/components/Cards/WordCard';
+import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
 const Vocabulary = () => {
+  const [lesson, setLesson] = useState(0);
+
+  const { vocabulary, lessons, updateVocabulary } = UseVocabulary();
+
+  if (vocabulary.length === 0 || !lessons) {
+    return <div>Loading...</div>;
+  }
+
+  const handleLessonChange = (event) => {
+    setLesson(event.target.value);
+    updateVocabulary(event.target.value);
+  };
+
   return (
     <PageWrapper>
-      <Card sx={{ maxWidth: 320, mx: 'auto', my: 3 }}>
-        <CardMedia
-          component='img'
-          height='320'
-          image='/images/cat-keyboard.gif'
-          alt='cat-keyboard'
-        />
-        <CardContent>
-          <Typography variant='body1' color='text.primary' textAlign='center'>
-            Coming Soon!
-          </Typography>
-        </CardContent>
-      </Card>
+      <FormControl fullWidth>
+        <InputLabel id='lesson-label'>Lesson</InputLabel>
+        <Select
+          labelId='lesson-label'
+          id='lesson-select'
+          value={lesson}
+          label='Lesson'
+          onChange={handleLessonChange}
+        >
+          {lessons.map((lesson) => (
+            <MenuItem key={lesson} value={lesson}>
+              {lesson === 0 ? 'Introduction' : `Lesson ${lesson}`}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
 
-      <Button
-        component={Link}
-        to='/'
-        variant='contained'
-        sx={{
-          maxWidth: 220,
-          display: 'block',
-          mx: 'auto',
-          my: 2,
-          textAlign: 'center',
-        }}
-        size='large'
-      >
-        Return to home
-      </Button>
+      <CardListWrapper>
+        {vocabulary.map((word) => (
+          <Grid key={word.hiragana} item xs={12} sm={4} md={3} lg={2.4}>
+            <WordCard word={word} />
+          </Grid>
+        ))}
+      </CardListWrapper>
     </PageWrapper>
   );
 };
