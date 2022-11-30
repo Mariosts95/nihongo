@@ -12,7 +12,11 @@ import Loader from '@/components/UI/Loader';
 import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
+import { shuffleArray } from '@/utils/helpers';
+
 const Katakana = () => {
+  const [testData, setTestData] = useState([]);
+
   const [testMode, setTestMode] = useState(false);
 
   const { katakana, resetKatakana, katakanaOptions, updateKatakanaOptions } = UseKatakana();
@@ -23,6 +27,7 @@ const Katakana = () => {
 
   const handleStartTestMode = () => {
     setTestMode(true);
+    setTestData(shuffleArray(katakana));
   };
 
   const handleStopTestMode = () => {
@@ -49,7 +54,7 @@ const Katakana = () => {
 
       {testMode && (
         <CardListWrapper>
-          {katakana.map((katakana) => (
+          {testData.map((katakana) => (
             <Grid key={katakana.kana} item xs={6} sm={4} md={3} lg={2.4}>
               <TestCard kana={katakana.kana} romaji={katakana.romaji} />
             </Grid>
