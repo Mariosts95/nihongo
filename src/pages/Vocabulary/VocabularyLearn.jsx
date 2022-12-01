@@ -1,30 +1,39 @@
 import { useState } from 'react';
 
+import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import Grid from '@mui/material/Grid';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import Switch from '@mui/material/Switch';
+import Typography from '@mui/material/Typography';
 
 import { UseVocabulary } from '@/store/VocabularyProvider';
 
 import WordCard from '@/components/Cards/WordCard';
+import Loader from '@/components/UI/Loader';
 import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
-const Vocabulary = () => {
+const VocabularyLearn = () => {
   const [lesson, setLesson] = useState(0);
+  const [showRomaji, setShowRomaji] = useState(false);
 
   const { vocabulary, lessons, updateVocabulary } = UseVocabulary();
-
-  if (vocabulary.length === 0 || !lessons) {
-    return <div>Loading...</div>;
-  }
 
   const handleLessonChange = (event) => {
     setLesson(event.target.value);
     updateVocabulary(event.target.value);
   };
+
+  const toggleRomaji = () => {
+    setShowRomaji((prev) => !prev);
+  };
+
+  if (vocabulary.length === 0 || !lessons) {
+    return <Loader />;
+  }
 
   return (
     <PageWrapper>
@@ -45,10 +54,22 @@ const Vocabulary = () => {
         </Select>
       </FormControl>
 
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Typography variant='body1' sx={{ mr: 1 }}>
+          Romaji:
+        </Typography>
+
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', my: 2 }}>
+          <Typography variant='body1'>Off</Typography>
+          <Switch checked={showRomaji} onChange={toggleRomaji} />
+          <Typography variant='body1'>On</Typography>
+        </Box>
+      </Box>
+
       <CardListWrapper>
         {vocabulary.map((word) => (
           <Grid key={word.hiragana} item xs={12} sm={4} md={3} lg={2.4}>
-            <WordCard word={word} />
+            <WordCard word={word} showRomaji={showRomaji} />
           </Grid>
         ))}
       </CardListWrapper>
@@ -56,4 +77,4 @@ const Vocabulary = () => {
   );
 };
 
-export default Vocabulary;
+export default VocabularyLearn;

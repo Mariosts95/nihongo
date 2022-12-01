@@ -5,10 +5,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 
 import { useGlobal } from '@/store/GlobalProvider';
-import VocabularyProvider from '@/store/VocabularyProvider';
 
 import HiraganaContextWrapper from './components/Wrappers/HiraganaContextWrapper';
 import KatakanaContextWrapper from './components/Wrappers/KatakanaContextWrapper';
+import VocabularyContextWrapper from './components/Wrappers/VocabularyContextWrapper';
 import HeaderMenu from '@/components/UI/HeaderMenu';
 import Loader from '@/components/UI/Loader';
 
@@ -27,7 +27,9 @@ const KatakanaLearn = lazy(() => import('./pages/Katakana/KatakanaLearn'));
 const KatakanaRandom = lazy(() => import('./pages/Katakana/KatakanaRandom'));
 const KatakanaTest = lazy(() => import('./pages/Katakana/KatakanaTest'));
 
-const Vocabulary = lazy(() => import('./pages/Vocabulary'));
+const Vocabulary = lazy(() => import('./pages/Vocabulary/Vocabulary'));
+const VocabularyLearn = lazy(() => import('./pages/Vocabulary/VocabularyLearn'));
+const VocabularyRandom = lazy(() => import('./pages/Vocabulary/VocabularyRandom'));
 
 const App = () => {
   const { themeSelection } = useGlobal();
@@ -61,17 +63,10 @@ const App = () => {
           <Route path='test' element={<KatakanaTest />} />
         </Route>
 
-        <Route path='/vocabulary'>
-          <Route
-            index
-            element={
-              <Suspense fallback={<Loader />}>
-                <VocabularyProvider>
-                  <Vocabulary />
-                </VocabularyProvider>
-              </Suspense>
-            }
-          />
+        <Route path='/vocabulary' element={<VocabularyContextWrapper />}>
+          <Route index element={<Vocabulary />} />
+          <Route path='learn' element={<VocabularyLearn />} />
+          <Route path='random' element={<VocabularyRandom />} />
         </Route>
 
         <Route

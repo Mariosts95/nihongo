@@ -17,10 +17,6 @@ const HiraganaRandom = () => {
 
   const { hiragana, getRandomHiragana, hiraganaOptions, updateHiraganaOptions } = UseHiragana();
 
-  if (!hiragana) {
-    return <Loader />;
-  }
-
   useEffect(() => {
     if (hiragana.length === 0) {
       setRandomKana(null);
@@ -30,6 +26,10 @@ const HiraganaRandom = () => {
   const getRandomKana = () => {
     setRandomKana(getRandomHiragana);
   };
+
+  if (!hiragana) {
+    return <Loader />;
+  }
 
   return (
     <PageWrapper>

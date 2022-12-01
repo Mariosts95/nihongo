@@ -10,6 +10,7 @@ import { useGlobal } from '@/store/GlobalProvider';
 
 const FlipSingleKanaCard = ({ kana, romaji }) => {
   const { kanaDisplayLanguage } = useGlobal();
+
   const [displaySide, setDisplaySide] = useState(kanaDisplayLanguage);
 
   useEffect(() => {

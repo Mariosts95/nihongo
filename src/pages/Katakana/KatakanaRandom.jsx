@@ -17,10 +17,6 @@ const KatakanaRandom = () => {
 
   const { katakana, getRandomKatakana, katakanaOptions, updateKatakanaOptions } = UseKatakana();
 
-  if (!katakana) {
-    return <Loader />;
-  }
-
   useEffect(() => {
     if (katakana.length === 0) {
       setRandomKana(null);
@@ -30,6 +26,10 @@ const KatakanaRandom = () => {
   const getRandomKana = () => {
     setRandomKana(getRandomKatakana);
   };
+
+  if (!katakana) {
+    return <Loader />;
+  }
 
   return (
     <PageWrapper>
