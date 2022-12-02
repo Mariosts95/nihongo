@@ -28,11 +28,12 @@ const WordCard = ({ word, showRomaji }) => {
   };
 
   return (
-    <Box sx={{ maxWidth: 380, width: '100%', mx: 'auto', my: 0, p: 1 }}>
+    <Box sx={{ maxWidth: 380, width: '100%', height: '100%', mx: 'auto', my: 0, p: 1 }}>
       <Card
         sx={{
           position: 'relative',
           pt: 2,
+          height: '100%',
         }}
       >
         <IconButton
@@ -47,14 +48,18 @@ const WordCard = ({ word, showRomaji }) => {
         >
           <VolumeUpIcon />
         </IconButton>
-        <CardContent sx={{ textAlign: 'center' }}>
+        <CardContent
+          sx={{ textAlign: 'center', height: '100%', display: 'flex', flexDirection: 'column' }}
+        >
           <Typography variant='h4' gutterBottom>
             {displaySide ? word.hiragana : word.english}
           </Typography>
 
-          <Typography variant='body2' gutterBottom>
-            {showRomaji ? word.romaji : ''}
-          </Typography>
+          {showRomaji ? (
+            <Typography variant='body2' gutterBottom>
+              {word.romaji}
+            </Typography>
+          ) : null}
 
           {showMeaning ? (
             <Typography variant='body1' gutterBottom>
@@ -64,7 +69,7 @@ const WordCard = ({ word, showRomaji }) => {
             <Button
               onClick={toggleShowMeaning}
               variant='contained'
-              sx={{ mt: 2, mx: 'auto', display: 'block' }}
+              sx={{ mx: 'auto', mt: 'auto', display: 'block' }}
             >
               {kanaDisplayLanguage ? 'Show English' : 'Show Japanese'}
             </Button>
