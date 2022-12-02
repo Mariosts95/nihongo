@@ -21,4 +21,11 @@ const shuffleArray = (array) => {
   return array;
 };
 
-export { randomInt, shuffleArray };
+const textToSpeech = (text, lang) => {
+  const word = new SpeechSynthesisUtterance();
+  word.text = text;
+  word.lang = lang;
+  speechSynthesis.speak(word);
+};
+
+export { randomInt, shuffleArray, textToSpeech };

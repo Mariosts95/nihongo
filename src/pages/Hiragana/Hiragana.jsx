@@ -10,31 +10,30 @@ const paths = [
   { name: 'Learn Hiragana', path: 'learn' },
   { name: 'Test Hiragana', path: 'test' },
   { name: 'Random Hiragana', path: 'random' },
+  { name: 'Reading Hiragana', path: 'reading' },
 ];
 
-const Hiragana = () => {
-  return (
-    <PageWrapper>
-      <Typography variant='h5' textAlign='center' gutterBottom>
-        Hiragana (ひらがな)
-      </Typography>
-      <Grid
-        container
-        flexDirection='column'
-        alignItems='center'
-        maxWidth={300}
-        sx={{ mx: 'auto', mt: 2, p: 2 }}
-      >
-        {paths.map((path) => (
-          <Grid item key={path.path} sx={{ width: '100%', my: 1 }}>
-            <Button component={Link} to={`${path.path}`} variant='outlined' fullWidth>
-              {path.name}
-            </Button>
-          </Grid>
-        ))}
-      </Grid>
-    </PageWrapper>
-  );
-};
+const Hiragana = () => (
+  <PageWrapper>
+    <Typography variant='h5' textAlign='center' gutterBottom>
+      Hiragana (ひらがな)
+    </Typography>
+    <Grid
+      container
+      flexDirection='column'
+      alignItems='center'
+      maxWidth={300}
+      sx={{ mx: 'auto', mt: 2, p: 2 }}
+    >
+      {paths.map((path) => (
+        <Grid item key={path.path} sx={{ width: '100%', my: 1 }}>
+          <Button component={Link} to={`${path.path}`} variant='outlined' fullWidth>
+            {path.name}
+          </Button>
+        </Grid>
+      ))}
+    </Grid>
+  </PageWrapper>
+);
 
 export default Hiragana;

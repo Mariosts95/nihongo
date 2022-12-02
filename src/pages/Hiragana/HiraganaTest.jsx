@@ -20,10 +20,6 @@ const HiraganaTest = () => {
 
   const { hiragana, resetHiragana, hiraganaOptions, updateHiraganaOptions } = UseHiragana();
 
-  if (!hiragana) {
-    return <Loader />;
-  }
-
   const handleStartTestMode = () => {
     setTestMode(true);
     setTestData(shuffleArray(hiragana));
@@ -33,6 +29,10 @@ const HiraganaTest = () => {
     setTestMode(false);
     resetHiragana();
   };
+
+  if (!hiragana) {
+    return <Loader />;
+  }
 
   return (
     <PageWrapper>

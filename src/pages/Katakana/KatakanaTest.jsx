@@ -16,14 +16,9 @@ import { shuffleArray } from '@/utils/helpers';
 
 const Katakana = () => {
   const [testData, setTestData] = useState([]);
-
   const [testMode, setTestMode] = useState(false);
 
   const { katakana, resetKatakana, katakanaOptions, updateKatakanaOptions } = UseKatakana();
-
-  if (!katakana) {
-    return <Loader />;
-  }
 
   const handleStartTestMode = () => {
     setTestMode(true);
@@ -35,10 +30,14 @@ const Katakana = () => {
     resetKatakana();
   };
 
+  if (!katakana) {
+    return <Loader />;
+  }
+
   return (
     <PageWrapper>
       <Typography variant='h5' textAlign='center' gutterBottom>
-        Test over Katakana (ひらがな) <br />
+        Test over Katakana (カタカナ) <br />
         {katakana.length ? `${katakana.length} characters` : ''}
       </Typography>
 
