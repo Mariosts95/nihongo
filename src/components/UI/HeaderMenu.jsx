@@ -17,7 +17,6 @@ const pages = [
   { name: 'Home', path: '/' },
   { name: 'Hiragana', path: '/hiragana' },
   { name: 'Katakana', path: '/katakana' },
-  { name: 'Vocabulary', path: '/vocabulary' },
 ];
 
 const HeaderMenu = () => {
