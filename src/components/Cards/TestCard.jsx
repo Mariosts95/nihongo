@@ -13,6 +13,7 @@ const TestCard = ({ kana, romaji }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const answer = inputRef.current.value.trim().toLowerCase();
+    inputRef.current.value = inputRef.current.value.trim();
     setIsCorrect(answer === romaji);
   };
 

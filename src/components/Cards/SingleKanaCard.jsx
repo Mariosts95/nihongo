@@ -3,12 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 const SingleKanaCard = ({ kana, romaji }) => (
-  <Card
-    sx={{
-      position: 'relative',
-      pt: 2,
-    }}
-  >
+  <Card sx={{ pt: 2 }}>
     <CardContent sx={{ textAlign: 'center' }}>
       <Typography variant='h1' color='text.primary' gutterBottom>
         {kana}

@@ -1,35 +1,15 @@
-import { useEffect, useState } from 'react';
+import useScrollHide from '@/hooks/useScrollHide';
 
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Fab from '@mui/material/Fab';
 import Zoom from '@mui/material/Zoom';
 
 const ScrollToTop = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [showScroll, setShowScroll] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleVisibleButton);
-
-    return () => {
-      window.removeEventListener('scroll', handleVisibleButton);
-    };
-  }, [scrollPosition]);
-
-  const handleVisibleButton = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-
-    if (scrollPosition > 300) {
-      setShowScroll(true);
-    } else if (scrollPosition < 300) {
-      setShowScroll(false);
-    }
-  };
+  const { showElement } = useScrollHide(200);
 
   return (
     <Zoom
-      in={showScroll}
+      in={showElement}
       timeout={{
         enter: 250,
         exit: 250,

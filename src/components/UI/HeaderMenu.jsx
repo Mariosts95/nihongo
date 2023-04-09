@@ -31,7 +31,7 @@ const HeaderMenu = () => {
   };
 
   return (
-    <AppBar position='static'>
+    <AppBar position='sticky'>
       <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
         <Box>
           <IconButton

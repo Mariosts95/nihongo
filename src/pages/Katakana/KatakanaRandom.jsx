@@ -7,9 +7,10 @@ import Typography from '@mui/material/Typography';
 import { UseKatakana } from '@/store/KatakanaProvider';
 
 import FlipSingleKanaCard from '@/components/Cards/FlipSingleKanaCard';
-import KanaOptions from '@/components/UI/KanaOptions';
+import KanaFilters from '@/components/UI/KanaFilters';
 import LanguageSwitch from '@/components/UI/LanguageSwitch';
 import Loader from '@/components/UI/Loader';
+import PageHeader from '@/components/UI/PageHeader';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
 const KatakanaRandom = () => {
@@ -33,21 +34,25 @@ const KatakanaRandom = () => {
 
   return (
     <PageWrapper>
-      <Typography variant='h5' textAlign='center' gutterBottom>
-        Generate a random Katakana (カタカナ) character
-      </Typography>
+      <PageHeader
+        title='Generate a random Katakana (カタカナ) character'
+        description='Open the filters to choose which characters to learn.'
+        kana={katakana}
+      />
 
-      {!katakana.length ? (
-        <Typography variant='body2' textAlign='center' gutterBottom>
-          Open the filters to choose from which characters to learn.
-        </Typography>
-      ) : null}
+      <KanaFilters kanaOptions={katakanaOptions} updateKanaOptions={updateKatakanaOptions} />
 
-      <KanaOptions kanaOptions={katakanaOptions} updateKanaOptions={updateKatakanaOptions} />
-
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          maxWidth: '550px',
+          mx: 'auto',
+        }}
+      >
         <Typography variant='body1' sx={{ mr: 1 }}>
-          Display language:
+          Display:
         </Typography>
         <LanguageSwitch />
       </Box>
