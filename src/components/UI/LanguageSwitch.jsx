@@ -9,9 +9,9 @@ const LanguageSwitch = () => {
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', my: 2 }}>
-      <Typography variant='body1'>English</Typography>
+      <Typography variant='body1'>Romaji</Typography>
       <Switch checked={kanaDisplayLanguage} onChange={updateKanaDisplayLang} />
-      <Typography variant='body1'>Japanese</Typography>
+      <Typography variant='body1'>Kana</Typography>
     </Box>
   );
 };

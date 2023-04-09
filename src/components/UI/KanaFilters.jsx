@@ -1,51 +1,60 @@
 import { useState } from 'react';
 
+import useScrollHide from '@/hooks/useScrollHide';
+
 import FilterListIcon from '@mui/icons-material/FilterList';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
+import Fab from '@mui/material/Fab';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import Grid from '@mui/material/Grid';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Zoom from '@mui/material/Zoom';
 
-const KanaOptions = ({ kanaOptions, updateKanaOptions }) => {
+const KanaFilters = ({ kanaOptions, updateKanaOptions }) => {
   const [openFilters, setOpenFilters] = useState(false);
+
+  const { showElement } = useScrollHide(200, true);
 
   const handleOpenFilters = () => {
     setOpenFilters(true);
   };
 
-  const HandleCloseFilters = () => {
+  const handleCloseFilters = () => {
     setOpenFilters(false);
   };
 
   return (
     <>
-      <Button
-        variant='outlined'
-        startIcon={<FilterListIcon />}
-        onClick={handleOpenFilters}
-        fullWidth
-        size='large'
-        sx={{ mx: 'auto', my: 2 }}
+      <Zoom
+        in={showElement}
+        timeout={{
+          enter: 250,
+          exit: 250,
+        }}
       >
-        Open Filters
-      </Button>
+        <Fab
+          color='primary'
+          variant='extended'
+          size='medium'
+          aria-label='filters'
+          onClick={handleOpenFilters}
+          sx={{ position: 'fixed', bottom: '16px', left: '16px' }}
+        >
+          <FilterListIcon />
+          Filters
+        </Fab>
+      </Zoom>
 
       <SwipeableDrawer
         anchor='bottom'
         open={openFilters}
-        onClose={HandleCloseFilters}
+        onClose={handleCloseFilters}
         onOpen={handleOpenFilters}
       >
-        <FormGroup sx={{ p: 2 }}>
-          <Grid
-            spacing={1}
-            container
-            flexDirection='column'
-            justifyContent='center'
-            alignItems='center'
-          >
+        <FormGroup sx={{ p: 1, mx: 'auto', maxWidth: '550px' }}>
+          <Grid spacing={1} container flexDirection='column' justifyContent='center' sx={{ mb: 1 }}>
             <Grid item>
               <FormControlLabel
                 control={
@@ -56,7 +65,6 @@ const KanaOptions = ({ kanaOptions, updateKanaOptions }) => {
                   />
                 }
                 label='Main Kana'
-                labelPlacement='top'
               />
             </Grid>
 
@@ -70,9 +78,9 @@ const KanaOptions = ({ kanaOptions, updateKanaOptions }) => {
                   />
                 }
                 label='Dakuten Kana (tenten)'
-                labelPlacement='top'
               />
             </Grid>
+
             <Grid item>
               <FormControlLabel
                 control={
@@ -83,23 +91,25 @@ const KanaOptions = ({ kanaOptions, updateKanaOptions }) => {
                   />
                 }
                 label='Handakuon Kana (maru)'
-                labelPlacement='top'
               />
             </Grid>
+
             <Grid item>
               <FormControlLabel
                 control={
                   <Checkbox name='youon' onChange={updateKanaOptions} checked={kanaOptions.youon} />
                 }
                 label='Combination Kana'
-                labelPlacement='top'
               />
             </Grid>
           </Grid>
+          <Button variant='contained' onClick={handleCloseFilters} sx={{ mb: 2 }}>
+            Apply Filters
+          </Button>
         </FormGroup>
       </SwipeableDrawer>
     </>
   );
 };
 
-export default KanaOptions;
+export default KanaFilters;

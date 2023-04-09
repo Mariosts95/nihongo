@@ -7,9 +7,10 @@ import Typography from '@mui/material/Typography';
 import { UseHiragana } from '@/store/HiraganaProvider';
 
 import FlipSingleKanaCard from '@/components/Cards/FlipSingleKanaCard';
-import KanaOptions from '@/components/UI/KanaOptions';
+import KanaFilters from '@/components/UI/KanaFilters';
 import LanguageSwitch from '@/components/UI/LanguageSwitch';
 import Loader from '@/components/UI/Loader';
+import PageHeader from '@/components/UI/PageHeader';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
 const HiraganaRandom = () => {
@@ -33,19 +34,23 @@ const HiraganaRandom = () => {
 
   return (
     <PageWrapper>
-      <Typography variant='h5' textAlign='center' gutterBottom>
-        Generate a random Hiragana (ひらがな) character
-      </Typography>
+      <PageHeader
+        title='Generate a random Hiragana (ひらがな) character'
+        description='Open the filters to choose which characters to learn.'
+        kana={hiragana}
+      />
 
-      {!hiragana.length ? (
-        <Typography variant='body2' textAlign='center' gutterBottom>
-          Open the filters to choose from which characters to learn.
-        </Typography>
-      ) : null}
+      <KanaFilters kanaOptions={hiraganaOptions} updateKanaOptions={updateHiraganaOptions} />
 
-      <KanaOptions kanaOptions={hiraganaOptions} updateKanaOptions={updateHiraganaOptions} />
-
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          maxWidth: '550px',
+          mx: 'auto',
+        }}
+      >
         <Typography variant='body1' sx={{ mr: 1 }}>
           Display language:
         </Typography>

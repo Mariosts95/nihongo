@@ -2,13 +2,13 @@ import { useState } from 'react';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
 
 import { UseKatakana } from '@/store/KatakanaProvider';
 
 import TestCard from '@/components/Cards/TestCard';
-import KanaOptions from '@/components/UI/KanaOptions';
+import KanaFilters from '@/components/UI/KanaFilters';
 import Loader from '@/components/UI/Loader';
+import PageHeader from '@/components/UI/PageHeader';
 import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
@@ -36,19 +36,14 @@ const Katakana = () => {
 
   return (
     <PageWrapper>
-      <Typography variant='h5' textAlign='center' gutterBottom>
-        Test over Katakana (カタカナ) <br />
-        {katakana.length ? `${katakana.length} characters` : ''}
-      </Typography>
-
-      {!katakana.length ? (
-        <Typography variant='body2' textAlign='center' gutterBottom>
-          Open the filters to choose which characters to test.
-        </Typography>
-      ) : null}
+      <PageHeader
+        title='Test over Katakana (カタカナ)'
+        description='Open the filters to choose which characters to test.'
+        kana={katakana}
+      />
 
       {!testMode && (
-        <KanaOptions kanaOptions={katakanaOptions} updateKanaOptions={updateKatakanaOptions} />
+        <KanaFilters kanaOptions={katakanaOptions} updateKanaOptions={updateKatakanaOptions} />
       )}
 
       {testMode && (
