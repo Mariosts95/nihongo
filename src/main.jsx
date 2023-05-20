@@ -1,20 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import ReactGA from 'react-ga4';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import GlobalProvider from '@/store/GlobalProvider';
+import { loadStateFromLocalStorage } from '@/store/slices/globalSlice';
 
 import App from '@/App.jsx';
+import store from '@/store';
 
 ReactGA.initialize('G-C4JNGV8HTM');
 
+store.dispatch(loadStateFromLocalStorage());
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router>
-      <GlobalProvider>
+    <Provider store={store}>
+      <Router>
         <App />
-      </GlobalProvider>
-    </Router>
+      </Router>
+    </Provider>
   </React.StrictMode>
 );

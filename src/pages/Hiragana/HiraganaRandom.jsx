@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import { UseHiragana } from '@/store/HiraganaProvider';
+import { updateHiraganaOptions } from '@/store/slices/hiraganaSlice';
 
 import FlipSingleKanaCard from '@/components/Cards/FlipSingleKanaCard';
 import KanaFilters from '@/components/UI/KanaFilters';
@@ -13,10 +13,15 @@ import Loader from '@/components/UI/Loader';
 import PageHeader from '@/components/UI/PageHeader';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
+import { randomInt } from '@/utils/helpers';
+
 const HiraganaRandom = () => {
+  const hiragana = useSelector((state) => state.hiragana.hiragana);
+  const hiraganaOptions = useSelector((state) => state.hiragana.hiraganaOptions);
+
   const [randomKana, setRandomKana] = useState(null);
 
-  const { hiragana, getRandomHiragana, hiraganaOptions, updateHiraganaOptions } = UseHiragana();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (hiragana.length === 0) {
@@ -24,8 +29,9 @@ const HiraganaRandom = () => {
     }
   }, [hiragana]);
 
-  const getRandomKana = () => {
-    setRandomKana(getRandomHiragana);
+  const handleRandomKana = () => {
+    const index = randomInt(0, hiragana.length - 1);
+    setRandomKana(hiragana[index]);
   };
 
   if (!hiragana) {
@@ -40,26 +46,23 @@ const HiraganaRandom = () => {
         kana={hiragana}
       />
 
-      <KanaFilters kanaOptions={hiraganaOptions} updateKanaOptions={updateHiraganaOptions} />
-
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          maxWidth: '550px',
-          mx: 'auto',
+      <KanaFilters
+        kanaOptions={hiraganaOptions}
+        updateKanaOptions={(e) => {
+          dispatch(
+            updateHiraganaOptions({
+              optionName: e.target.name,
+              optionValue: e.target.checked,
+            })
+          );
         }}
-      >
-        <Typography variant='body1' sx={{ mr: 1 }}>
-          Display language:
-        </Typography>
-        <LanguageSwitch />
-      </Box>
+      />
+
+      <LanguageSwitch />
 
       {hiragana.length ? (
         <Button
-          onClick={getRandomKana}
+          onClick={handleRandomKana}
           variant='contained'
           sx={{ my: 2, mx: 'auto', display: 'block' }}
         >

@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
-import { UseHiragana } from '@/store/HiraganaProvider';
+import { resetHiragana, updateHiraganaOptions } from '@/store/slices/hiraganaSlice';
 
 import TestCard from '@/components/Cards/TestCard';
 import KanaFilters from '@/components/UI/KanaFilters';
@@ -15,19 +16,22 @@ import PageWrapper from '@/components/Wrappers/PageWrapper';
 import { shuffleArray } from '@/utils/helpers';
 
 const HiraganaTest = () => {
-  const [testData, setTestData] = useState([]);
-  const [testMode, setTestMode] = useState(false);
+  const hiragana = useSelector((state) => state.hiragana.hiragana);
+  const hiraganaOptions = useSelector((state) => state.hiragana.hiraganaOptions);
 
-  const { hiragana, resetHiragana, hiraganaOptions, updateHiraganaOptions } = UseHiragana();
+  const [testingKana, setTestingKana] = useState([]);
+  const [isTesting, setIsTesting] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleStartTestMode = () => {
-    setTestMode(true);
-    setTestData(shuffleArray(hiragana));
+    setIsTesting(true);
+    setTestingKana(shuffleArray(hiragana));
   };
 
   const handleStopTestMode = () => {
-    setTestMode(false);
-    resetHiragana();
+    setIsTesting(false);
+    dispatch(resetHiragana());
   };
 
   if (!hiragana) {
@@ -42,38 +46,36 @@ const HiraganaTest = () => {
         kana={hiragana}
       />
 
-      {!testMode && (
-        <KanaFilters kanaOptions={hiraganaOptions} updateKanaOptions={updateHiraganaOptions} />
+      {hiragana.length > 0 && (
+        <Button
+          onClick={!isTesting ? handleStartTestMode : handleStopTestMode}
+          variant='contained'
+          sx={{ display: 'block', mx: 'auto', my: 1 }}
+        >
+          {!isTesting ? 'Start' : 'Stop'} Test
+        </Button>
       )}
 
-      {testMode && (
+      {isTesting ? (
         <CardListWrapper>
-          {testData.map((hiragana) => (
+          {testingKana.map((hiragana) => (
             <Grid key={hiragana.kana} item xs={6} sm={4} md={3} lg={2.4}>
               <TestCard kana={hiragana.kana} romaji={hiragana.romaji} />
             </Grid>
           ))}
         </CardListWrapper>
-      )}
-
-      {!testMode && hiragana.length ? (
-        <Button
-          onClick={handleStartTestMode}
-          variant='contained'
-          sx={{ display: 'block', mx: 'auto', my: 1 }}
-        >
-          Start Test
-        </Button>
       ) : (
-        testMode && (
-          <Button
-            onClick={handleStopTestMode}
-            variant='contained'
-            sx={{ display: 'block', mx: 'auto', my: 1 }}
-          >
-            Stop test
-          </Button>
-        )
+        <KanaFilters
+          kanaOptions={hiraganaOptions}
+          updateKanaOptions={(e) => {
+            dispatch(
+              updateHiraganaOptions({
+                optionName: e.target.name,
+                optionValue: e.target.checked,
+              })
+            );
+          }}
+        />
       )}
     </PageWrapper>
   );

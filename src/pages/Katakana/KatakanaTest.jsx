@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
-import { UseKatakana } from '@/store/KatakanaProvider';
+import { resetKatakana, updateKatakanaOptions } from '@/store/slices/katakanaSlice';
 
 import TestCard from '@/components/Cards/TestCard';
 import KanaFilters from '@/components/UI/KanaFilters';
@@ -15,19 +16,22 @@ import PageWrapper from '@/components/Wrappers/PageWrapper';
 import { shuffleArray } from '@/utils/helpers';
 
 const Katakana = () => {
-  const [testData, setTestData] = useState([]);
-  const [testMode, setTestMode] = useState(false);
+  const katakana = useSelector((state) => state.katakana.katakana);
+  const katakanaOptions = useSelector((state) => state.katakana.katakanaOptions);
 
-  const { katakana, resetKatakana, katakanaOptions, updateKatakanaOptions } = UseKatakana();
+  const [testingKana, setTestingKana] = useState([]);
+  const [isTesting, setIsTesting] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleStartTestMode = () => {
-    setTestMode(true);
-    setTestData(shuffleArray(katakana));
+    setIsTesting(true);
+    setTestingKana(shuffleArray(katakana));
   };
 
   const handleStopTestMode = () => {
-    setTestMode(false);
-    resetKatakana();
+    setIsTesting(false);
+    dispatch(resetKatakana());
   };
 
   if (!katakana) {
@@ -42,38 +46,36 @@ const Katakana = () => {
         kana={katakana}
       />
 
-      {!testMode && (
-        <KanaFilters kanaOptions={katakanaOptions} updateKanaOptions={updateKatakanaOptions} />
+      {katakana.length > 0 && (
+        <Button
+          onClick={!isTesting ? handleStartTestMode : handleStopTestMode}
+          variant='contained'
+          sx={{ display: 'block', mx: 'auto', my: 1 }}
+        >
+          {!isTesting ? 'Start' : 'Stop'} Test
+        </Button>
       )}
 
-      {testMode && (
+      {isTesting ? (
         <CardListWrapper>
-          {testData.map((katakana) => (
+          {testingKana.map((katakana) => (
             <Grid key={katakana.kana} item xs={6} sm={4} md={3} lg={2.4}>
               <TestCard kana={katakana.kana} romaji={katakana.romaji} />
             </Grid>
           ))}
         </CardListWrapper>
-      )}
-
-      {!testMode && katakana.length ? (
-        <Button
-          onClick={handleStartTestMode}
-          variant='contained'
-          sx={{ display: 'block', mx: 'auto', my: 1 }}
-        >
-          Start Test
-        </Button>
       ) : (
-        testMode && (
-          <Button
-            onClick={handleStopTestMode}
-            variant='contained'
-            sx={{ display: 'block', mx: 'auto', my: 1 }}
-          >
-            Stop test
-          </Button>
-        )
+        <KanaFilters
+          kanaOptions={katakanaOptions}
+          updateKanaOptions={(e) => {
+            dispatch(
+              updateKatakanaOptions({
+                optionName: e.target.name,
+                optionValue: e.target.checked,
+              })
+            );
+          }}
+        />
       )}
     </PageWrapper>
   );

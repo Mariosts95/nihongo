@@ -1,20 +1,27 @@
+import { useDispatch, useSelector } from 'react-redux';
+
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-import { useGlobal } from '@/store/GlobalProvider';
+import { updateThemeSelection } from '@/store/slices/globalSlice';
 
-const ThemeSwitch = ({ sx }) => {
-  const { themeSelection, updateThemeSelection } = useGlobal();
+const ThemeSwitch = () => {
+  const theme = useSelector((state) => state.global.theme);
+
+  const dispatch = useDispatch();
+
+  const handleOnChange = () => {
+    dispatch(updateThemeSelection());
+  };
 
   return (
     <ToggleButtonGroup
-      value={themeSelection}
+      value={theme}
       exclusive
-      onChange={updateThemeSelection}
+      onChange={handleOnChange}
       aria-label='dark or light theme'
-      sx={sx}
     >
       <ToggleButton value='light' aria-label='light mode'>
         <LightModeIcon />
