@@ -1,6 +1,8 @@
+import { useDispatch, useSelector } from 'react-redux';
+
 import Grid from '@mui/material/Grid';
 
-import { UseKatakana } from '@/store/KatakanaProvider';
+import { updateKatakanaOptions } from '@/store/slices/katakanaSlice';
 
 import SingleKanaCard from '@/components/Cards/SingleKanaCard';
 import KanaFilters from '@/components/UI/KanaFilters';
@@ -10,7 +12,10 @@ import CardListWrapper from '@/components/Wrappers/CardListWrapper';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
 const KatakanaLearn = () => {
-  const { katakana, katakanaOptions, updateKatakanaOptions } = UseKatakana();
+  const katakana = useSelector((state) => state.katakana.katakana);
+  const katakanaOptions = useSelector((state) => state.katakana.katakanaOptions);
+
+  const dispatch = useDispatch();
 
   if (!katakana) {
     return <Loader />;
@@ -24,7 +29,17 @@ const KatakanaLearn = () => {
         kana={katakana}
       />
 
-      <KanaFilters kanaOptions={katakanaOptions} updateKanaOptions={updateKatakanaOptions} />
+      <KanaFilters
+        kanaOptions={katakanaOptions}
+        updateKanaOptions={(e) => {
+          dispatch(
+            updateKatakanaOptions({
+              optionName: e.target.name,
+              optionValue: e.target.checked,
+            })
+          );
+        }}
+      />
 
       <CardListWrapper>
         {katakana.map((katakana) => (

@@ -5,20 +5,12 @@ const randomInt = (min, max) => {
 
 // Randomize array element order in-place.
 const shuffleArray = (array) => {
-  let currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  const randomizedArray = [...array];
+  for (let i = randomizedArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [randomizedArray[i], randomizedArray[j]] = [randomizedArray[j], randomizedArray[i]];
   }
-
-  return array;
+  return randomizedArray;
 };
 
 export { randomInt, shuffleArray };

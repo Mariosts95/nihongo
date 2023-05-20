@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import { UseKatakana } from '@/store/KatakanaProvider';
+import { updateKatakanaOptions } from '@/store/slices/katakanaSlice';
 
 import FlipSingleKanaCard from '@/components/Cards/FlipSingleKanaCard';
 import KanaFilters from '@/components/UI/KanaFilters';
@@ -13,10 +13,15 @@ import Loader from '@/components/UI/Loader';
 import PageHeader from '@/components/UI/PageHeader';
 import PageWrapper from '@/components/Wrappers/PageWrapper';
 
+import { randomInt } from '@/utils/helpers';
+
 const KatakanaRandom = () => {
+  const katakana = useSelector((state) => state.katakana.katakana);
+  const katakanaOptions = useSelector((state) => state.katakana.katakanaOptions);
+
   const [randomKana, setRandomKana] = useState(null);
 
-  const { katakana, getRandomKatakana, katakanaOptions, updateKatakanaOptions } = UseKatakana();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (katakana.length === 0) {
@@ -24,8 +29,9 @@ const KatakanaRandom = () => {
     }
   }, [katakana]);
 
-  const getRandomKana = () => {
-    setRandomKana(getRandomKatakana);
+  const handleRandomKana = () => {
+    const index = randomInt(0, katakana.length - 1);
+    setRandomKana(katakana[index]);
   };
 
   if (!katakana) {
@@ -40,26 +46,23 @@ const KatakanaRandom = () => {
         kana={katakana}
       />
 
-      <KanaFilters kanaOptions={katakanaOptions} updateKanaOptions={updateKatakanaOptions} />
-
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          maxWidth: '550px',
-          mx: 'auto',
+      <KanaFilters
+        kanaOptions={katakanaOptions}
+        updateKanaOptions={(e) => {
+          dispatch(
+            updateKatakanaOptions({
+              optionName: e.target.name,
+              optionValue: e.target.checked,
+            })
+          );
         }}
-      >
-        <Typography variant='body1' sx={{ mr: 1 }}>
-          Display:
-        </Typography>
-        <LanguageSwitch />
-      </Box>
+      />
+
+      <LanguageSwitch />
 
       {katakana.length ? (
         <Button
-          onClick={getRandomKana}
+          onClick={handleRandomKana}
           variant='contained'
           sx={{ my: 2, mx: 'auto', display: 'block' }}
         >

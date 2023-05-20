@@ -80,7 +80,10 @@ const HeaderMenu = () => {
                   {page.name}
                 </Button>
               ))}
-              <ThemeSwitch sx={{ marginTop: 'auto' }} />
+
+              <Box sx={{ marginTop: 'auto' }}>
+                <ThemeSwitch />
+              </Box>
             </Box>
           </SwipeableDrawer>
         </Box>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import Box from '@mui/material/Box';
@@ -8,13 +9,10 @@ import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
-import { useGlobal } from '@/store/GlobalProvider';
-
 import { textToSpeech } from '@/utils/helpers';
 
 const WordCard = ({ word, showRomaji }) => {
-  const { kanaDisplayLanguage } = useGlobal();
-
+  const kanaDisplayLanguage = useSelector((state) => state.global.kanaDisplayLanguage);
   const [displaySide, setDisplaySide] = useState(kanaDisplayLanguage);
   const [showMeaning, setShowMeaning] = useState(false);
 
