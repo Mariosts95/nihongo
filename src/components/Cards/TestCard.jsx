@@ -38,7 +38,7 @@ const TestCard = ({ kana, romaji }) => {
             color={isCorrect === false ? 'error' : 'primary'}
             inputRef={inputRef}
             error={isCorrect === false}
-            helperText={isCorrect === false ? 'Incorrect entry.' : ''}
+            helperText={isCorrect === false ? 'Incorrect entry.' : ' '}
             disabled={isCorrect === true}
             fullWidth
             sx={{ mb: 1 }}
